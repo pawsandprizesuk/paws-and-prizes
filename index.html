@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Paws & Prizes | UK Pet & Family Prize Competitions</title>
+
+  <meta name="description" content="Paws & Prizes — fun, family-friendly prize competitions for pet lovers across the UK.">
+
+  <style>
+
+    :root {
+
+      --cream: #fffaf5;
+
+      --cream-dark: #f5ede5;
+
+      --brown: #392a26;
+
+      --brown-soft: #6d5951;
+
+      --rose: #c98286;
+
+      --rose-dark: #a95f65;
+
+      --gold: #c9a45c;
+
+      --white: #ffffff;
+
+      --border: #eaded5;
+
+      --shadow: 0 14px 40px rgba(57, 42, 38, 0.10);
+
+      --radius: 22px;
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+      background: var(--cream);
+
+      color: var(--brown);
+
+      line-height: 1.6;
+
+    }
+
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+    button {
+
+      font: inherit;
+
+    }
+
+    .top-bar {
+
+      background: var(--brown);
+
+      color: var(--white);
+
+      text-align: center;
+
+      padding: 8px 16px;
+
+      font-size: 13px;
+
+    }
+
+    header {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      background: rgba(255, 250, 245, 0.96);
+
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .nav {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 17px 22px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+    }
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 11px;
+
+      font-weight: 800;
+
+      font-size: 21px;
+
+    }
+
+    .brand-paw {
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 13px;
+
+      display: grid;
+
+      place-items: center;
+
+      background: var(--rose);
+
+      color: white;
+
+      font-size: 21px;
+
+    }
+
+    .nav-links {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 26px;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      color: var(--brown-soft);
+
+    }
+
+    .nav-links a:hover {
+
+      color: var(--rose-dark);
+
+    }
+
+    .nav-actions {
+
+      display: flex;
+
+      gap: 10px;
+
+    }
+
+    .icon-button {
+
+      border: 1px solid var(--border);
+
+      background: white;
+
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 13px;
+
+      cursor: pointer;
+
+    }
+
+    .hero {
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 72px 22px 65px;
+
+      display: grid;
+
+      grid-template-columns: 1.1fr 0.9fr;
+
+      gap: 55px;
+
+      align-items: center;
+
+    }
+
+    .eyebrow {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      background: #f4e2e0;
+
+      color: var(--rose-dark);
+
+      padding: 7px 13px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 20px;
+
+    }
+
+    h1 {
+
+      font-size: clamp(42px, 6vw, 70px);
+
+      line-height: 0.98;
+
+      letter-spacing: -3px;
+
+      margin-bottom: 23px;
+
+    }
+
+    h1 span {
+
+      color: var(--rose-dark);
+
+    }
+
+    .hero-copy {
+
+      max-width: 590px;
+
+      color: var(--brown-soft);
+
+      font-size: 18px;
+
+      margin-bottom: 30px;
+
+    }
+
+    .hero-buttons {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+    }
+
+    .button {
+
+      border: none;
+
+      border-radius: 14px;
+
+      padding: 14px 22px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+    .button-primary {
+
+      background: var(--rose);
+
+      color: white;
+
+    }
+
+    .button-secondary {
+
+      background: white;
+
+      border: 1px solid var(--border);
+
+      color: var(--brown);
+
+    }
+
+    .hero-card {
+
+      min-height: 390px;
+
+      border-radius: 32px;
+
+      background: linear-gradient(145deg, #f2ddd7, #ead2c4);
+
+      box-shadow: var(--shadow);
+
+      padding: 28px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: flex-end;
+
+    }
+
+    .hero-card::before {
+
+      content: "🐾";
+
+      position: absolute;
+
+      font-size: 170px;
+
+      right: 20px;
+
+      top: 25px;
+
+      opacity: .12;
+
+      transform: rotate(-15deg);
+
+    }
+
+    .hero-prize {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: 100%;
+
+      background: rgba(255,255,255,.9);
+
+      padding: 20px;
+
+      border-radius: 22px;
+
+    }
+
+    .hero-prize small {
+
+      color: var(--rose-dark);
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+    }
+
+    .hero-prize h3 {
+
+      font-size: 25px;
+
+      margin: 4px 0 8px;
+
+    }
+
+    .hero-prize p {
+
+      font-size: 14px;
+
+      color: var(--brown-soft);
+
+    }
+
+    .section {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 70px 22px;
+
+    }
+
+    .section-heading {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: end;
+
+      gap: 20px;
+
+      margin-bottom: 28px;
+
+    }
+
+    .section-heading h2 {
+
+      font-size: 36px;
+
+      letter-spacing: -1.5px;
+
+    }
+
+    .section-heading p {
+
+      color: var(--brown-soft);
+
+      max-width: 550px;
+
+    }
+
+    .competition-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 22px;
+
+    }
+
+    .competition-card {
+
+      background: white;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      overflow: hidden;
+
+      box-shadow: 0 8px 25px rgba(57,42,38,.05);
+
+    }
+
+    .competition-image {
+
+      height: 210px;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 76px;
+
+      background: linear-gradient(135deg, #f3e2dd, #f8eee8);
+
+      position: relative;
+
+    }
+
+    .badge {
+
+      position: absolute;
+
+      top: 14px;
+
+      left: 14px;
+
+      background: var(--brown);
+
+      color: white;
+
+      border-radius: 999px;
+
+      padding: 6px 10px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+    }
+
+    .competition-body {
+
+      padding: 21px;
+
+    }
+
+    .competition-body h3 {
+
+      font-size: 21px;
+
+      margin-bottom: 6px;
+
+    }
+
+    .competition-body p {
+
+      color: var(--brown-soft);
+
+      font-size: 14px;
+
+      margin-bottom: 18px;
+
+    }
+
+    .progress {
+
+      height: 7px;
+
+      background: #eee5df;
+
+      border-radius: 99px;
+
+      overflow: hidden;
+
+      margin-bottom: 8px;
+
+    }
+
+    .progress span {
+
+      display: block;
+
+      height: 100%;
+
+      width: 68%;
+
+      background: var(--rose);
+
+      border-radius: inherit;
+
+    }
+
+    .ticket-info {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      font-size: 12px;
+
+      color: var(--brown-soft);
+
+      margin-bottom: 18px;
+
+    }
+
+    .card-footer {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 10px;
+
+    }
+
+    .price {
+
+      font-size: 21px;
+
+      font-weight: 900;
+
+    }
+
+    .small-button {
+
+      border: none;
+
+      background: var(--brown);
+
+      color: white;
+
+      padding: 10px 14px;
+
+      border-radius: 11px;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+    .how-it-works {
+
+      background: var(--brown);
+
+      color: white;
+
+    }
+
+    .how-inner {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 70px 22px;
+
+    }
+
+    .how-inner .section-heading p {
+
+      color: #d9cbc4;
+
+    }
+
+    .steps {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+
+    }
+
+    .step {
+
+      border: 1px solid rgba(255,255,255,.13);
+
+      background: rgba(255,255,255,.05);
+
+      padding: 25px;
+
+      border-radius: 20px;
+
+    }
+
+    .step-number {
+
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 13px;
+
+      background: var(--rose);
+
+      display: grid;
+
+      place-items: center;
+
+      font-weight: 900;
+
+      margin-bottom: 18px;
+
+    }
+
+    .step h3 {
+
+      margin-bottom: 7px;
+
+    }
+
+    .step p {
+
+      color: #d9cbc4;
+
+      font-size: 14px;
+
+    }
+
+    .reveal-section {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 75px 22px;
+
+      text-align: center;
+
+    }
+
+    .reveal-box {
+
+      margin: 30px auto 0;
+
+      max-width: 650px;
+
+      min-height: 280px;
+
+      border-radius: 28px;
+
+      background: linear-gradient(145deg, #f1ddd7, #e7c7bd);
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 35px;
+
+      box-shadow: var(--shadow);
+
+    }
+
+    .wheel {
+
+      width: 115px;
+
+      height: 115px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 52px;
+
+      background: conic-gradient(
+
+        #c98286 0 25%,
+
+        #f6e6df 25% 50%,
+
+        #c9a45c 50% 75%,
+
+        #f6e6df 75% 100%
+
+      );
+
+      border: 8px solid white;
+
+      margin-bottom: 18px;
+
+    }
+
+    .reveal-box h3 {
+
+      font-size: 25px;
+
+      margin-bottom: 5px;
+
+    }
+
+    .reveal-box p {
+
+      color: var(--brown-soft);
+
+      margin-bottom: 18px;
+
+    }
+
+    footer {
+
+      background: #2b211e;
+
+      color: white;
+
+      padding: 45px 22px;
+
+    }
+
+    .footer-inner {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: 2fr 1fr 1fr;
+
+      gap: 35px;
+
+    }
+
+    footer p,
+
+    footer a {
+
+      color: #cfc2bc;
+
+      font-size: 13px;
+
+    }
+
+    footer h4 {
+
+      margin-bottom: 12px;
+
+    }
+
+    .footer-links {
+
+      display: grid;
+
+      gap: 7px;
+
+    }
+
+    .copyright {
+
+      max-width: 1200px;
+
+      margin: 35px auto 0;
+
+      padding-top: 20px;
+
+      border-top: 1px solid rgba(255,255,255,.1);
+
+      color: #a99a93;
+
+      font-size: 12px;
+
+    }
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+
+        display: none;
+
+      }
+
+      .hero {
+
+        grid-template-columns: 1fr;
+
+        padding-top: 45px;
+
+      }
+
+      .competition-grid,
+
+      .steps {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .footer-inner {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      h1 {
+
+        letter-spacing: -2px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="top-bar">
+
+    🐾 Welcome to Paws & Prizes — where pets, families and prizes come together.
+
+  </div>
+
+  <header>
+
+    <nav class="nav">
+
+      <a href="#" class="brand">
+
+        <span class="brand-paw">🐾</span>
+
+        <span>Paws & Prizes</span>
+
+      </a>
+
+      <div class="nav-links">
+
+        <a href="#competitions">Competitions</a>
+
+        <a href="#how-it-works">How It Works</a>
+
+        <a href="#reveal">Winner Reveal</a>
+
+        <a href="#contact">Contact</a>
+
+      </div>
+
+      <div class="nav-actions">
+
+        <button class="icon-button" aria-label="Account">👤</button>
+
+        <button class="icon-button" aria-label="Basket">🛒</button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div>
+
+        <div class="eyebrow">
+
+          🐾 UK Pet & Family Competitions
+
+        </div>
+
+        <h1>
+
+          Big prizes.<br>
+
+          <span>Happy paws.</span>
+
+        </h1>
+
+        <p class="hero-copy">
+
+          Discover fun prize competitions designed for pet lovers and families.
+
+          Pick your competition, choose your entries and get ready for the reveal.
+
+        </p>
+
+        <div class="hero-buttons">
+
+          <a class="button button-primary" href="#competitions">
+
+            Explore Competitions
+
+          </a>
+
+          <a class="button button-secondary" href="#how-it-works">
+
+            How It Works
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <div class="hero-prize">
+
+          <small>Featured Competition</small>
+
+          <h3>
+
+            Win Something Wonderful 🐶
+
+          </h3>
+
+          <p>
+
+            A brand-new prize competition is coming soon.
+
+            Keep your eyes on Paws & Prizes.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="competitions">
+
+      <div class="section-heading">
+
+        <div>
+
+          <h2>Featured competitions</h2>
+
+          <p>
+
+            Our competition collection will live here, with live ticket
+
+            availability shown as entries are purchased.
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="competition-grid">
+
+        <article class="competition-card">
+
+          <div class="competition-image">
+
+            <span class="badge">Coming Soon</span>
+
+            🐕
+
+          </div>
+
+          <div class="competition-body">
+
+            <h3>Pet Lover's Prize</h3>
+
+            <p>
+
+              A special prize competition for four-legged family members.
+
+            </p>
+
+            <div class="progress">
+
+              <span></span>
+
+            </div>
+
+            <div class="ticket-info">
+
+              <span>68% allocated</span>
+
+              <span>Demo availability</span>
+
+            </div>
+
+            <div class="card-footer">
+
+              <span class="price">£3 entry</span>
+
+              <button class="small-button">View Competition</button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="competition-card">
+
+          <div class="competition-image">
+
+            <span class="badge">Coming Soon</span>
+
+            🏡
+
+          </div>
+
+          <div class="competition-body">
+
+            <h3>Family Fun Prize</h3>
+
+            <p>
+
+              A family-focused prize designed to bring everyone together.
+
+            </p>
+
+            <div class="progress">
+
+              <span style="width:42%"></span>
+
+            </div>
+
+            <div class="ticket-info">
+
+              <span>42% allocated</span>
+
+              <span>Demo availability</span>
+
+            </div>
+
+            <div class="card-footer">
+
+              <span class="price">£3 entry</span>
+
+              <button class="small-button">View Competition</button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="competition-card">
+
+          <div class="competition-image">
+
+            <span class="badge">Coming Soon</span>
+
+            🎁
+
+          </div>
+
+          <div class="competition-body">
+
+            <h3>The Big Prize</h3>
+
+            <p>
+
+              A larger competition with a very special prize to be announced.
+
+            </p>
+
+            <div class="progress">
+
+              <span style="width:18%"></span>
+
+            </div>
+
+            <div class="ticket-info">
+
+              <span>18% allocated</span>
+
+              <span>Demo availability</span>
+
+            </div>
+
+            <div class="card-footer">
+
+              <span class="price">£3 entry</span>
+
+              <button class="small-button">View Competition</button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+
+      <div class="how-inner">
+
+        <div class="section-heading">
+
+          <div>
+
+            <h2>How it works</h2>
+
+            <p>
+
+              Simple, transparent and designed to make the experience fun.
+
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Choose your competition</h3>
+
+            <p>
+
+              Browse the available competitions and check the prize,
+
+              entry price and ticket availability.
+
+            </p>
+
+          </div>
+
+          <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Choose your entries</h3>
+
+            <p>
+
+              Select the entries you want and see availability update
+
+              as the competition progresses.
+
+            </p>
+
+          </div>
+
+          <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Watch the reveal</h3>
+
+            <p>
+
+              When the competition closes, the winning outcome will be
+
+              revealed through the Paws & Prizes reveal experience.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="reveal-section" id="reveal">
+
+      <div class="eyebrow">
+
+        ✨ The Paws & Prizes Reveal
+
+      </div>
+
+      <h2>Spin to reveal</h2>
+
+      <p>
+
+        A fun visual reveal experience is being built for competition winners.
+
+      </p>
+
+      <div class="reveal-box">
+
+        <div class="wheel">
+
+          🐾
+
+        </div>
+
+        <h3>Your winning moment</h3>
+
+        <p>
+
+          The final outcome will be securely determined by the competition
+
+          system before the visual reveal.
+
+        </p>
+
+        <button class="button button-primary" type="button">
+
+          Reveal Demo
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer id="contact">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="brand">
+
+          <span class="brand-paw">🐾</span>
+
+          <span>Paws & Prizes</span>
+
+        </div>
+
+        <p style="margin-top:14px; max-width:380px;">
+
+          Pet-focused prize competitions with a little bit of fun,
+
+          excitement and plenty of paws.
+
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Explore</h4>
+
+        <div class="footer-links">
+
+          <a href="#competitions">Competitions</a>
+
+          <a href="#how-it-works">How It Works</a>
+
+          <a href="#reveal">Winner Reveal</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h4>Information</h4>
+
+        <div class="footer-links">
+
+          <a href="#">Terms & Conditions</a>
+
+          <a href="#">Privacy Policy</a>
+
+          <a href="#">Contact</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+
+      © 2026 Paws & Prizes. Demo website — not currently accepting paid entries.
+
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
