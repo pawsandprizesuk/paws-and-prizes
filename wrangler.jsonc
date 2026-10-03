@@ -1,0 +1,19 @@
+{
+
+  "name": "paws-and-prizes",
+
+  "main": "./src/index.js",
+
+  "compatibility_date": "2026-10-02",
+
+  "assets": {
+
+    "directory": "./",
+
+    "binding": "ASSETS",
+
+    "run_worker_first": ["/api/*"]
+
+  }
+
+}
