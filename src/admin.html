@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws & Prizes — Admin</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: #f5f5f5;
+    }
+
+    header {
+      background: #111;
+      border-bottom: 1px solid #c9a227;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #d4af37;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .admin-label {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      margin-bottom: 35px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #d4af37;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    button {
+      background: #d4af37;
+      color: #111;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      text-align: center;
+      color: #666;
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🐾 PAWS & PRIZES</div>
+    <div class="admin-label">ADMINISTRATION</div>
+  </header>
+
+  <main>
+    <h1>Admin Dashboard</h1>
+    <p class="subtitle">
+      Manage competitions, prizes, tickets and website content.
+    </p>
+
+    <section class="dashboard">
+
+      <div class="card">
+        <h2>🎟️ Competitions</h2>
+        <p>Create, edit and manage your competitions.</p>
+        <button type="button">Manage Competitions</button>
+      </div>
+
+      <div class="card">
+        <h2>🏆 Prizes</h2>
+        <p>Manage prizes and competition outcomes.</p>
+        <button type="button">Manage Prizes</button>
+      </div>
+
+      <div class="card">
+        <h2>🎫 Tickets</h2>
+        <p>View ticket quantities, prices and sales information.</p>
+        <button type="button">Manage Tickets</button>
+      </div>
+
+      <div class="card">
+        <h2>🐾 Paw Fund</h2>
+        <p>Manage information relating to the Paws & Prizes Paw Fund.</p>
+        <button type="button">Paw Fund</button>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    Paws & Prizes Admin • Pre-launch
+  </footer>
+
+</body>
+</html>
