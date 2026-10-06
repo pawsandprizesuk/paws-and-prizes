@@ -1,33 +1,15 @@
-{
-
-  "name": "paws-and-prizes",
-
+"name": "paws-and-prizes",
   "main": "./src/index.js",
-
   "compatibility_date": "2026-10-02",
-
   "assets": {
-
     "directory": "./",
-
     "binding": "ASSETS",
-
     "run_worker_first": ["/api/*"]
-
   },
-
   "d1_databases": [
-
     {
-
       "binding": "DB",
-
       "database_name": "paws-and-prizes-db",
-
       "database_id": "6fe789b9-fc78-4eff-bb7c-3c5bf1f6601e"
-
     }
-
   ]
-
-}
