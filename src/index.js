@@ -1,7 +1,5 @@
 export default {
-
   async fetch(request, env) {
-
     const url = new URL(request.url);
 
     // ---------------------------------
@@ -9,14 +7,11 @@ export default {
     // ---------------------------------
 
     if (url.pathname === "/api/health") {
-
       return Response.json({
         ok: true,
         service: "Paws & Prizes API"
       });
-
     }
-
 
     // ---------------------------------
     // GET ALL COMPETITIONS
@@ -26,15 +21,12 @@ export default {
       url.pathname === "/api/competitions" &&
       request.method === "GET"
     ) {
-
       const { results } = await env.DB.prepare(
         "SELECT * FROM competitions ORDER BY id DESC"
       ).all();
 
       return Response.json(results);
-
     }
-
 
     // ---------------------------------
     // CREATE COMPETITION
@@ -44,11 +36,9 @@ export default {
       url.pathname === "/api/competitions" &&
       request.method === "POST"
     ) {
-
       const data = await request.json();
 
       const result = await env.DB.prepare(`
-
         INSERT INTO competitions
         (
           title,
@@ -66,11 +56,8 @@ export default {
           rules,
           prize_value
         )
-
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-
       `).bind(
-
         data.title,
         data.description,
         data.prize,
@@ -85,16 +72,13 @@ export default {
         data.tickets_sold || 0,
         data.rules,
         data.prize_value
-
       ).run();
 
       return Response.json({
         success: true,
         id: result.meta.last_row_id
       });
-
     }
-
 
     // ---------------------------------
     // UPDATE COMPETITION
@@ -104,15 +88,12 @@ export default {
       url.pathname.startsWith("/api/competitions/") &&
       request.method === "PUT"
     ) {
-
       const id = url.pathname.split("/").pop();
 
       const data = await request.json();
 
       await env.DB.prepare(`
-
         UPDATE competitions
-
         SET
           title = ?,
           description = ?,
@@ -128,11 +109,8 @@ export default {
           tickets_sold = ?,
           rules = ?,
           prize_value = ?
-
         WHERE id = ?
-
       `).bind(
-
         data.title,
         data.description,
         data.prize,
@@ -148,15 +126,12 @@ export default {
         data.rules,
         data.prize_value,
         id
-
       ).run();
 
       return Response.json({
         success: true
       });
-
     }
-
 
     // ---------------------------------
     // DELETE COMPETITION
@@ -166,7 +141,6 @@ export default {
       url.pathname.startsWith("/api/competitions/") &&
       request.method === "DELETE"
     ) {
-
       const id = url.pathname.split("/").pop();
 
       await env.DB.prepare(
@@ -176,34 +150,25 @@ export default {
       return Response.json({
         success: true
       });
-
     }
-
 
     // ---------------------------------
     // ADMIN PAGE
     // ---------------------------------
 
     if (url.pathname === "/admin.html") {
-
       return env.ASSETS.fetch(
         new Request(
           new URL("/src/admin.html", request.url),
           request
         )
       );
-
     }
-
 
     // ---------------------------------
     // EVERYTHING ELSE
     // ---------------------------------
 
     return env.ASSETS.fetch(request);
-
   }
-  
-};
-
 };
