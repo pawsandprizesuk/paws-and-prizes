@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Paws & Prizes — Admin</title>
 
   <style>
@@ -24,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
     }
 
     .logo {
@@ -38,50 +40,99 @@
     }
 
     main {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 20px 60px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #d4af37;
     }
 
     h1 {
-      color: #d4af37;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .subtitle {
       color: #aaa;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
-    .dashboard {
+    .panel {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #292929;
+      padding-bottom: 15px;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
     }
 
-    .card {
-      background: #151515;
-      border: 1px solid #292929;
-      border-radius: 12px;
-      padding: 25px;
+    .full {
+      grid-column: 1 / -1;
     }
 
-    .card h2 {
-      margin-top: 0;
-      color: #d4af37;
-      font-size: 20px;
+    label {
+      display: block;
+      color: #ddd;
+      font-weight: bold;
+      margin-bottom: 7px;
     }
 
-    .card p {
-      color: #aaa;
-      line-height: 1.5;
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: #0d0d0d;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #d4af37;
+    }
+
+    .help {
+      color: #777;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
     }
 
     button {
       background: #d4af37;
       color: #111;
       border: none;
-      padding: 12px 18px;
+      padding: 12px 20px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
@@ -91,59 +142,1320 @@
       opacity: 0.9;
     }
 
+    button.secondary {
+      background: #292929;
+      color: #fff;
+    }
+
+    button.danger {
+      background: #8f2525;
+      color: #fff;
+    }
+
+    .status-message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .status-message.success {
+      display: block;
+      background: #163d25;
+      color: #9ff0b5;
+    }
+
+    .status-message.error {
+      display: block;
+      background: #4a1717;
+      color: #ffb0b0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .stat {
+      background: #0d0d0d;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .stat-label {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      color: #d4af37;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .competition-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .competition-card {
+      background: #0d0d0d;
+      border: 1px solid #292929;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .competition-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .competition-meta {
+      color: #aaa;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .competition-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #292929;
+      color: #d4af37;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .notice {
+      background: #211d0e;
+      border: 1px solid #6f5a18;
+      color: #ddd09b;
+      padding: 15px;
+      border-radius: 10px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
     footer {
       text-align: center;
       color: #666;
-      padding: 40px 20px;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 850px) {
+      .grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">🐾 PAWS & PRIZES</div>
-    <div class="admin-label">ADMINISTRATION</div>
-  </header>
+<header>
+  <div class="logo">🐾 PAWS & PRIZES</div>
+  <div class="admin-label">ADMINISTRATION • PRE-LAUNCH</div>
+</header>
 
-  <main>
-    <h1>Admin Dashboard</h1>
-    <p class="subtitle">
-      Manage competitions, prizes, tickets and website content.
-    </p>
+<main>
 
-    <section class="dashboard">
+  <h1>Competition Creator</h1>
 
-      <div class="card">
-        <h2>🎟️ Competitions</h2>
-        <p>Create, edit and manage your competitions.</p>
-        <button type="button">Manage Competitions</button>
+  <p class="subtitle">
+    Create, edit and manage Paws & Prizes competitions.
+  </p>
+
+  <div class="notice">
+    <strong>Pre-launch creator:</strong>
+    This admin area is currently being built and tested.
+    Competition rules shown here are templates and must be reviewed and approved
+    before any competition is launched for real.
+  </div>
+
+
+  <!-- ========================================= -->
+  <!-- CREATOR FORM -->
+  <!-- ========================================= -->
+
+  <section class="panel">
+
+    <h2 id="form-heading">🏆 Create Competition</h2>
+
+    <form id="competition-form">
+
+      <div class="grid">
+
+        <div>
+          <label for="title">Competition title</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Example: Win £5,000 for your pet family"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="theme">Theme</label>
+          <input
+            id="theme"
+            name="theme"
+            type="text"
+            placeholder="Example: Lucky Paws"
+          >
+        </div>
+
+        <div class="full">
+          <label for="description">Competition description</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Describe the competition, prize and experience for customers."
+            required
+          ></textarea>
+        </div>
+
+
+        <!-- PRIZE -->
+
+        <div>
+          <label for="prize">Main prize</label>
+          <input
+            id="prize"
+            name="prize"
+            type="text"
+            placeholder="Example: £5,000 cash prize"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="prize_value">Prize value (£)</label>
+          <input
+            id="prize_value"
+            name="prize_value"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="5000"
+          >
+        </div>
+
+
+        <!-- TICKETS -->
+
+        <div>
+          <label for="ticket_quantity">Total tickets</label>
+          <input
+            id="ticket_quantity"
+            name="ticket_quantity"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="1000"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="ticket_price">Ticket price (£)</label>
+          <input
+            id="ticket_price"
+            name="ticket_price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="1.99"
+            required
+          >
+        </div>
+
+
+        <!-- DATES -->
+
+        <div>
+          <label for="start_date">Start date & time</label>
+          <input
+            id="start_date"
+            name="start_date"
+            type="datetime-local"
+          >
+        </div>
+
+        <div>
+          <label for="closing_date">Closing date & time</label>
+          <input
+            id="closing_date"
+            name="closing_date"
+            type="datetime-local"
+            required
+          >
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div>
+          <label for="status">Competition status</label>
+
+          <select id="status" name="status">
+
+            <option value="draft">Draft</option>
+
+            <option value="scheduled">
+              Scheduled
+            </option>
+
+            <option value="live">
+              Live
+            </option>
+
+            <option value="closed">
+              Closed
+            </option>
+
+          </select>
+        </div>
+
+
+        <div>
+          <label for="tickets_sold">Tickets sold</label>
+
+          <input
+            id="tickets_sold"
+            name="tickets_sold"
+            type="number"
+            min="0"
+            step="1"
+            value="0"
+          >
+
+          <div class="help">
+            For testing/admin purposes only at this stage.
+          </div>
+        </div>
+
+
+        <!-- IMAGES -->
+
+        <div class="full">
+
+          <label for="image_url">
+            Main competition image URL
+          </label>
+
+          <input
+            id="image_url"
+            name="image_url"
+            type="url"
+            placeholder="https://example.com/main-pet-photo.jpg"
+          >
+
+          <div class="help">
+            Image upload storage will be added later.
+            For now, use an image URL.
+          </div>
+
+        </div>
+
+
+        <div class="full">
+
+          <label for="gallery_images">
+            Gallery image URLs
+          </label>
+
+          <textarea
+            id="gallery_images"
+            name="gallery_images"
+            placeholder="Add one image URL per line."
+          ></textarea>
+
+        </div>
+
+
+        <!-- RULES -->
+
+        <div class="full">
+
+          <label for="rules">
+            Competition rules / legal wording
+          </label>
+
+          <textarea
+            id="rules"
+            name="rules"
+            placeholder="Competition rules will be generated here..."
+          ></textarea>
+
+          <div class="help">
+            This is a working template only and must be legally reviewed
+            before launch.
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="card">
-        <h2>🏆 Prizes</h2>
-        <p>Manage prizes and competition outcomes.</p>
-        <button type="button">Manage Prizes</button>
+
+      <!-- LIVE CALCULATIONS -->
+
+      <div class="panel" style="margin-top:25px;">
+
+        <h3>📊 Competition figures</h3>
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-label">
+              Maximum turnover
+            </div>
+
+            <div
+              class="stat-value"
+              id="maximum-turnover"
+            >
+              £0.00
+            </div>
+          </div>
+
+
+          <div class="stat">
+            <div class="stat-label">
+              Current turnover
+            </div>
+
+            <div
+              class="stat-value"
+              id="current-turnover"
+            >
+              £0.00
+            </div>
+          </div>
+
+
+          <div class="stat">
+            <div class="stat-label">
+              Tickets remaining
+            </div>
+
+            <div
+              class="stat-value"
+              id="tickets-remaining"
+            >
+              0
+            </div>
+          </div>
+
+
+          <div class="stat">
+            <div class="stat-label">
+              Percentage sold
+            </div>
+
+            <div
+              class="stat-value"
+              id="percentage-sold"
+            >
+              0%
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="card">
-        <h2>🎫 Tickets</h2>
-        <p>View ticket quantities, prices and sales information.</p>
-        <button type="button">Manage Tickets</button>
+
+      <!-- BUTTONS -->
+
+      <div class="buttons">
+
+        <button type="submit">
+          💾 Save Competition
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          id="generate-rules"
+        >
+          📜 Generate Rules Template
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          id="clear-form"
+        >
+          ✨ New Competition
+        </button>
+
       </div>
 
-      <div class="card">
-        <h2>🐾 Paw Fund</h2>
-        <p>Manage information relating to the Paws & Prizes Paw Fund.</p>
-        <button type="button">Paw Fund</button>
+      <div
+        id="status-message"
+        class="status-message"
+      ></div>
+
+    </form>
+
+  </section>
+
+
+  <!-- ========================================= -->
+  <!-- EXISTING COMPETITIONS -->
+  <!-- ========================================= -->
+
+  <section class="panel">
+
+    <h2>🎟️ Existing Competitions</h2>
+
+    <div
+      id="competition-list"
+      class="competition-list"
+    >
+      Loading competitions...
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  Paws & Prizes Admin • Pre-launch
+</footer>
+
+
+<script>
+
+  let editingId = null;
+
+
+  // =========================================
+  // ELEMENTS
+  // =========================================
+
+  const form =
+    document.getElementById("competition-form");
+
+  const title =
+    document.getElementById("title");
+
+  const theme =
+    document.getElementById("theme");
+
+  const description =
+    document.getElementById("description");
+
+  const prize =
+    document.getElementById("prize");
+
+  const prizeValue =
+    document.getElementById("prize_value");
+
+  const ticketQuantity =
+    document.getElementById("ticket_quantity");
+
+  const ticketPrice =
+    document.getElementById("ticket_price");
+
+  const startDate =
+    document.getElementById("start_date");
+
+  const closingDate =
+    document.getElementById("closing_date");
+
+  const status =
+    document.getElementById("status");
+
+  const ticketsSold =
+    document.getElementById("tickets_sold");
+
+  const imageUrl =
+    document.getElementById("image_url");
+
+  const galleryImages =
+    document.getElementById("gallery_images");
+
+  const rules =
+    document.getElementById("rules");
+
+  const competitionList =
+    document.getElementById("competition-list");
+
+  const formHeading =
+    document.getElementById("form-heading");
+
+  const statusMessage =
+    document.getElementById("status-message");
+
+
+  // =========================================
+  // NUMBER CALCULATIONS
+  // =========================================
+
+  function updateCalculations() {
+
+    const quantity =
+      Number(ticketQuantity.value) || 0;
+
+    const price =
+      Number(ticketPrice.value) || 0;
+
+    const sold =
+      Number(ticketsSold.value) || 0;
+
+    const maximum =
+      quantity * price;
+
+    const current =
+      sold * price;
+
+    const remaining =
+      Math.max(quantity - sold, 0);
+
+    const percentage =
+      quantity > 0
+        ? Math.min((sold / quantity) * 100, 100)
+        : 0;
+
+    document.getElementById(
+      "maximum-turnover"
+    ).textContent =
+      `£${maximum.toFixed(2)}`;
+
+    document.getElementById(
+      "current-turnover"
+    ).textContent =
+      `£${current.toFixed(2)}`;
+
+    document.getElementById(
+      "tickets-remaining"
+    ).textContent =
+      remaining;
+
+    document.getElementById(
+      "percentage-sold"
+    ).textContent =
+      `${percentage.toFixed(1)}%`;
+  }
+
+
+  ticketQuantity.addEventListener(
+    "input",
+    updateCalculations
+  );
+
+  ticketPrice.addEventListener(
+    "input",
+    updateCalculations
+  );
+
+  ticketsSold.addEventListener(
+    "input",
+    updateCalculations
+  );
+
+
+  // =========================================
+  // RULE TEMPLATE
+  // =========================================
+
+  function generateRules() {
+
+    const competitionTitle =
+      title.value.trim() ||
+      "[Competition Title]";
+
+    const prizeText =
+      prize.value.trim() ||
+      "[Prize]";
+
+    const price =
+      Number(ticketPrice.value) || 0;
+
+    const quantity =
+      Number(ticketQuantity.value) || 0;
+
+    const closing =
+      closingDate.value
+        ? new Date(
+            closingDate.value
+          ).toLocaleString(
+            "en-GB"
+          )
+        : "[Closing Date & Time]";
+
+
+    rules.value = `PAWS & PRIZES — COMPETITION RULES
+
+Competition:
+${competitionTitle}
+
+Prize:
+${prizeText}
+
+Ticket price:
+£${price.toFixed(2)}
+
+Maximum number of tickets:
+${quantity}
+
+Closing date and time:
+${closing}
+
+
+1. ELIGIBILITY
+
+The eligibility requirements for this competition will be confirmed in the final published competition terms.
+
+
+2. ENTRY
+
+Each valid paid entry will be allocated a ticket number in accordance with the competition's published entry process.
+
+
+3. PRIZE
+
+The prize for this competition is:
+
+${prizeText}
+
+
+4. COMPETITION CLOSURE
+
+The competition will close at the published closing date and time, subject to the final competition terms.
+
+
+5. WINNER
+
+The winner will be determined using the winner-selection process published for this competition.
+
+
+6. WINNER NOTIFICATION
+
+The winner will be contacted using the details provided during entry.
+
+
+7. PRIZE DELIVERY
+
+Prize delivery arrangements will be confirmed in the final published competition terms.
+
+
+8. GENERAL
+
+Paws & Prizes reserves the right to apply the final published competition terms consistently to all valid entries.
+
+
+IMPORTANT
+
+This is a working pre-launch template and is NOT final legal advice. Final competition rules, eligibility requirements, entry mechanics, winner selection procedure, cancellation/refund provisions, privacy wording and other required terms must be reviewed and approved before this competition is launched.`;
+
+    showMessage(
+      "Rules template generated. Review and amend it before saving.",
+      "success"
+    );
+  }
+
+
+  document.getElementById(
+    "generate-rules"
+  ).addEventListener(
+    "click",
+    generateRules
+  );
+
+
+  // =========================================
+  // MESSAGE
+  // =========================================
+
+  function showMessage(
+    message,
+    type
+  ) {
+
+    statusMessage.textContent =
+      message;
+
+    statusMessage.className =
+      `status-message ${type}`;
+
+  }
+
+
+  // =========================================
+  // CLEAR FORM
+  // =========================================
+
+  function clearForm() {
+
+    editingId = null;
+
+    form.reset();
+
+    ticketsSold.value = 0;
+
+    formHeading.textContent =
+      "🏆 Create Competition";
+
+    status.value =
+      "draft";
+
+    statusMessage.className =
+      "status-message";
+
+    updateCalculations();
+  }
+
+
+  document.getElementById(
+    "clear-form"
+  ).addEventListener(
+    "click",
+    clearForm
+  );
+
+
+  // =========================================
+  // SAVE COMPETITION
+  // =========================================
+
+  form.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+      const data = {
+
+        title:
+          title.value.trim(),
+
+        description:
+          description.value.trim(),
+
+        prize:
+          prize.value.trim(),
+
+        ticket_price:
+          Number(ticketPrice.value),
+
+        ticket_quantity:
+          Number(ticketQuantity.value),
+
+        closing_date:
+          closingDate.value,
+
+        theme:
+          theme.value.trim(),
+
+        image_url:
+          imageUrl.value.trim(),
+
+        gallery_images:
+          galleryImages.value.trim(),
+
+        start_date:
+          startDate.value,
+
+        status:
+          status.value,
+
+        tickets_sold:
+          Number(ticketsSold.value) || 0,
+
+        rules:
+          rules.value.trim(),
+
+        prize_value:
+          Number(prizeValue.value) || 0
+
+      };
+
+
+      try {
+
+        let response;
+
+
+        if (editingId) {
+
+          response =
+            await fetch(
+              `/api/competitions/${editingId}`,
+              {
+                method: "PUT",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify(data)
+              }
+            );
+
+        } else {
+
+          response =
+            await fetch(
+              "/api/competitions",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify(data)
+              }
+            );
+        }
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "The server returned an error."
+          );
+
+        }
+
+
+        showMessage(
+          editingId
+            ? "Competition updated successfully."
+            : "Competition created successfully.",
+          "success"
+        );
+
+
+        clearForm();
+
+        await loadCompetitions();
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          "Something went wrong while saving the competition.",
+          "error"
+        );
+
+      }
+
+    }
+  );
+
+
+  // =========================================
+  // LOAD COMPETITIONS
+  // =========================================
+
+  async function loadCompetitions() {
+
+    competitionList.textContent =
+      "Loading competitions...";
+
+
+    try {
+
+      const response =
+        await fetch(
+          "/api/competitions"
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Could not load competitions."
+        );
+
+      }
+
+
+      const competitions =
+        await response.json();
+
+
+      if (!competitions.length) {
+
+        competitionList.innerHTML = `
+          <div class="competition-card">
+            <div class="competition-meta">
+              No competitions have been created yet.
+            </div>
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      competitionList.innerHTML =
+        competitions.map(
+          competitionCard
+        ).join("");
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      competitionList.innerHTML = `
+        <div class="competition-card">
+          <div class="competition-meta">
+            Unable to load competitions.
+          </div>
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  // =========================================
+  // COMPETITION CARD
+  // =========================================
+
+  function competitionCard(
+    competition
+  ) {
+
+    const quantity =
+      Number(
+        competition.ticket_quantity
+      ) || 0;
+
+    const sold =
+      Number(
+        competition.tickets_sold
+      ) || 0;
+
+    const price =
+      Number(
+        competition.ticket_price
+      ) || 0;
+
+    const remaining =
+      Math.max(
+        quantity - sold,
+        0
+      );
+
+    const turnover =
+      sold * price;
+
+    const percentage =
+      quantity > 0
+        ? ((sold / quantity) * 100).toFixed(1)
+        : "0.0";
+
+
+    return `
+
+      <div class="competition-card">
+
+        <h3>
+          ${escapeHtml(
+            competition.title || "Untitled competition"
+          )}
+        </h3>
+
+        <div style="margin-bottom:10px;">
+          <span class="badge">
+            ${escapeHtml(
+              competition.status || "draft"
+            )}
+          </span>
+        </div>
+
+        <div class="competition-meta">
+
+          <strong>Prize:</strong>
+          ${escapeHtml(
+            competition.prize || "Not specified"
+          )}
+
+          <br>
+
+          <strong>Ticket price:</strong>
+          £${price.toFixed(2)}
+
+          <br>
+
+          <strong>Tickets:</strong>
+          ${sold} sold /
+          ${remaining} remaining /
+          ${quantity} total
+
+          <br>
+
+          <strong>Current turnover:</strong>
+          £${turnover.toFixed(2)}
+
+          <br>
+
+          <strong>Sold:</strong>
+          ${percentage}%
+
+        </div>
+
+
+        <div class="competition-actions">
+
+          <button
+            type="button"
+            onclick="editCompetition(${competition.id})"
+          >
+            ✏️ Edit
+          </button>
+
+          <button
+            type="button"
+            class="danger"
+            onclick="deleteCompetition(${competition.id})"
+          >
+            🗑️ Delete
+          </button>
+
+        </div>
+
       </div>
 
-    </section>
-  </main>
+    `;
 
-  <footer>
-    Paws & Prizes Admin • Pre-launch
-  </footer>
+  }
+
+
+  // =========================================
+  // EDIT
+  // =========================================
+
+  async function editCompetition(
+    id
+  ) {
+
+    try {
+
+      const response =
+        await fetch(
+          "/api/competitions"
+        );
+
+      const competitions =
+        await response.json();
+
+      const competition =
+        competitions.find(
+          item =>
+            Number(item.id) ===
+            Number(id)
+        );
+
+
+      if (!competition) {
+
+        showMessage(
+          "Competition could not be found.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      editingId =
+        competition.id;
+
+
+      title.value =
+        competition.title || "";
+
+      theme.value =
+        competition.theme || "";
+
+      description.value =
+        competition.description || "";
+
+      prize.value =
+        competition.prize || "";
+
+      prizeValue.value =
+        competition.prize_value || "";
+
+      ticketQuantity.value =
+        competition.ticket_quantity || "";
+
+      ticketPrice.value =
+        competition.ticket_price || "";
+
+      startDate.value =
+        competition.start_date || "";
+
+      closingDate.value =
+        competition.closing_date || "";
+
+      status.value =
+        competition.status || "draft";
+
+      ticketsSold.value =
+        competition.tickets_sold || 0;
+
+      imageUrl.value =
+        competition.image_url || "";
+
+      galleryImages.value =
+        competition.gallery_images || "";
+
+      rules.value =
+        competition.rules || "";
+
+
+      formHeading.textContent =
+        "✏️ Edit Competition";
+
+
+      updateCalculations();
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Unable to load the competition.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // =========================================
+  // DELETE
+  // =========================================
+
+  async function deleteCompetition(
+    id
+  ) {
+
+    const confirmed =
+      confirm(
+        "Are you sure you want to delete this competition?"
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    try {
+
+      const response =
+        await fetch(
+          `/api/competitions/${id}`,
+          {
+            method: "DELETE"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Delete failed."
+        );
+
+      }
+
+
+      showMessage(
+        "Competition deleted.",
+        "success"
+      );
+
+
+      await loadCompetitions();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Unable to delete the competition.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // =========================================
+  // BASIC HTML ESCAPING
+  // =========================================
+
+  function escapeHtml(
+    value
+  ) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  // =========================================
+  // START
+  // =========================================
+
+  updateCalculations();
+
+  loadCompetitions();
+
+</script>
 
 </body>
 </html>
