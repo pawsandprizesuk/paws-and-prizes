@@ -66,6 +66,15 @@ export default {
 
     }
 
+    
+    if (url.pathname === "/admin.html") {
+
+      return env.ASSETS.fetch(
+        new Request(new URL("/src/admin.html", request.url), request)
+      );
+
+    }
+    
     return env.ASSETS.fetch(request);
 
   }
