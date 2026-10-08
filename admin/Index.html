@@ -1,20 +1,1642 @@
-function createCompetition() {
-      alert("Competition builder coming next.");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Paws & Prizes — Admin Dashboard</title>
+
+  <style>
+    :root {
+      --yellow: #f4c542;
+      --yellow-dark: #d6a900;
+      --cream: #fffaf0;
+      --soft-yellow: #fff2c9;
+      --charcoal: #20231f;
+      --muted: #686b64;
+      --white: #ffffff;
+      --green: #536b4d;
+      --green-dark: #40543c;
+      --border: #eee5d2;
+      --danger: #b84a4a;
+      --shadow: 0 18px 45px rgba(32, 35, 31, 0.10);
+      --radius: 20px;
     }
 
-    function managePrizes() {
-      alert("Prize management coming next.");
+    * {
+      box-sizing: border-box;
     }
 
-    function manageTickets() {
-      alert("Ticket management coming next.");
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
     }
 
-    function manageWebsite() {
-      alert("Website settings coming next.");
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
     }
 
-  </script>
+    button {
+      cursor: pointer;
+    }
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    header {
+      background: var(--charcoal);
+      color: white;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--yellow);
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 12px;
+      color: #c9cbc5;
+      margin-top: 2px;
+    }
+
+    .admin-badge {
+      background: rgba(244, 197, 66, 0.15);
+      border: 1px solid rgba(244, 197, 66, 0.35);
+      color: var(--yellow);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* ================================
+       LAYOUT
+    ================================= */
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 80px);
+    }
+
+    aside {
+      width: 230px;
+      background: white;
+      border-right: 1px solid var(--border);
+      padding: 22px 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-title {
+      color: #999;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px 12px;
+    }
+
+    .nav-button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .nav-button:hover,
+    .nav-button.active {
+      background: var(--soft-yellow);
+    }
+
+    .nav-button.active {
+      color: #8b6c00;
+    }
+
+    main {
+      flex: 1;
+      padding: 30px;
+      max-width: 1500px;
+    }
+
+    .page-heading {
+      margin-bottom: 26px;
+    }
+
+    .page-heading h1 {
+      margin: 0 0 7px;
+      font-size: 32px;
+    }
+
+    .page-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* ================================
+       CARDS
+    ================================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .stat-card .number {
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    .stat-card .small {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .panel h2 {
+      margin: 0 0 7px;
+      font-size: 20px;
+    }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* ================================
+       QUICK ACTIONS
+    ================================= */
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .action-button {
+      border: 1px solid var(--border);
+      background: var(--cream);
+      border-radius: 15px;
+      padding: 18px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .action-button:hover {
+      border-color: var(--yellow);
+      background: var(--soft-yellow);
+    }
+
+    .action-button span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .action-button small {
+      display: block;
+      color: var(--muted);
+      font-weight: normal;
+      margin-top: 4px;
+    }
+
+    /* ================================
+       COMPETITIONS
+    ================================= */
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button {
+      border: 0;
+      background: var(--yellow);
+      color: var(--charcoal);
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: 12px;
+    }
+
+    .primary-button:hover {
+      background: var(--yellow-dark);
+    }
+
+    .secondary-button {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--charcoal);
+      font-weight: 700;
+      padding: 11px 17px;
+      border-radius: 12px;
+    }
+
+    .danger-button {
+      border: 0;
+      background: #f8dddd;
+      color: var(--danger);
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 10px;
+    }
+
+    .competition-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .competition-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      background: white;
+    }
+
+    .competition-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .competition-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .competition-description {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-yellow);
+      color: #806400;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .competition-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .detail {
+      background: var(--cream);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .detail-label {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-weight: 800;
+    }
+
+    .competition-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    /* ================================
+       FORM
+    ================================= */
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 12px;
+      background: white;
+      color: var(--charcoal);
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--yellow-dark);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    /* ================================
+       PLACEHOLDER SECTIONS
+    ================================= */
+
+    .coming-soon {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .coming-soon-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    .coming-soon h2 {
+      margin-bottom: 8px;
+    }
+
+    .coming-soon p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .notice {
+      padding: 14px 16px;
+      background: var(--soft-yellow);
+      border: 1px solid #efd77c;
+      border-radius: 12px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--muted);
+    }
+
+    /* ================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 1000px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 750px) {
+      header {
+        padding: 14px 16px;
+      }
+
+      .admin-badge {
+        display: none;
+      }
+
+      aside {
+        width: 75px;
+        padding: 15px 8px;
+      }
+
+      .nav-title {
+        display: none;
+      }
+
+      .nav-button {
+        text-align: center;
+        font-size: 0;
+      }
+
+      .nav-button::first-letter {
+        font-size: 20px;
+      }
+
+      main {
+        padding: 20px 15px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid,
+      .competition-details {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .page-heading h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">🐾</div>
+
+    <div class="brand-text">
+      <strong>Paws & Prizes</strong>
+      <span>Administration • Pre-Launch</span>
+    </div>
+  </div>
+
+  <div class="admin-badge">
+    OWNER DASHBOARD
+  </div>
+</header>
+
+
+<div class="layout">
+
+  <aside>
+
+    <div class="nav-title">Dashboard</div>
+
+    <button class="nav-button active" onclick="showSection('overview', this)">
+      🏠 Overview
+    </button>
+
+    <button class="nav-button" onclick="showSection('competitions', this)">
+      🏆 Competitions
+    </button>
+
+    <button class="nav-button" onclick="showSection('prizes', this)">
+      🎁 Prizes
+    </button>
+
+    <button class="nav-button" onclick="showSection('tickets', this)">
+      🎟️ Tickets
+    </button>
+
+    <div class="nav-title">Business</div>
+
+    <button class="nav-button" onclick="showSection('pawfund', this)">
+      🐾 Paw Fund
+    </button>
+
+    <button class="nav-button" onclick="showSection('customers', this)">
+      👥 Customers
+    </button>
+
+    <button class="nav-button" onclick="showSection('payments', this)">
+      💳 Payments
+    </button>
+
+    <div class="nav-title">Management</div>
+
+    <button class="nav-button" onclick="showSection('staff', this)">
+      👤 Staff
+    </button>
+
+    <button class="nav-button" onclick="showSection('settings', this)">
+      ⚙️ Settings
+    </button>
+
+  </aside>
+
+
+  <main>
+
+    <!-- =================================
+         OVERVIEW
+    ================================== -->
+
+    <section id="overview" class="section active">
+
+      <div class="page-heading">
+        <h1>Good morning, Laura 👋</h1>
+        <p>Welcome to your Paws & Prizes control center.</p>
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat-card">
+          <div class="label">Competitions</div>
+          <div class="number" id="statCompetitions">0</div>
+          <div class="small">Currently in your system</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Tickets Sold</div>
+          <div class="number" id="statTickets">0</div>
+          <div class="small">Across all competitions</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Potential Turnover</div>
+          <div class="number" id="statTurnover">£0.00</div>
+          <div class="small">Based on tickets sold</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Paw Fund</div>
+          <div class="number">5%</div>
+          <div class="small">Target of business profit</div>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-grid">
+
+        <div class="panel">
+
+          <h2>Quick Actions</h2>
+
+          <div class="panel-subtitle">
+            Everything you need to manage the competitions.
+          </div>
+
+          <div class="quick-actions">
+
+            <button class="action-button" onclick="showSection('competitions')">
+              <span>🏆</span>
+              Manage Competitions
+              <small>Create, edit and manage competitions.</small>
+            </button>
+
+            <button class="action-button" onclick="newCompetition()">
+              <span>➕</span>
+              Create Competition
+              <small>Build a new prize competition.</small>
+            </button>
+
+            <button class="action-button" onclick="showSection('prizes')">
+              <span>🎁</span>
+              Manage Prizes
+              <small>Prize information and values.</small>
+            </button>
+
+            <button class="action-button" onclick="showSection('tickets')">
+              <span>🎟️</span>
+              Ticket Management
+              <small>Ticket quantities and sales.</small>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <h2>Business System</h2>
+
+          <div class="panel-subtitle">
+            Areas we'll build into the admin system.
+          </div>
+
+          <div class="notice">
+            🚧 This is your pre-launch administration area. Payment processing,
+            customers, staff permissions and the Paw Fund system will be added
+            as we build the business.
+          </div>
+
+          <p>
+            The competition system is connected to your Cloudflare D1 database.
+          </p>
+
+          <p>
+            <strong>Database:</strong> paws-and-prizes-db
+          </p>
+
+          <p>
+            <strong>Environment:</strong> Pre-launch
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         COMPETITIONS
+    ================================== -->
+
+    <section id="competitions" class="section">
+
+      <div class="page-heading">
+        <h1>Competitions</h1>
+        <p>Create and manage your Paws & Prizes competitions.</p>
+      </div>
+
+
+      <div class="panel">
+
+        <div class="toolbar">
+
+          <div>
+            <h2>Competition Creator</h2>
+            <div class="panel-subtitle">
+              Build your competition before it goes live.
+            </div>
+          </div>
+
+          <button class="primary-button" onclick="newCompetition()">
+            + New Competition
+          </button>
+
+        </div>
+
+
+        <div id="competitionList" class="competition-list">
+
+          <div class="empty">
+            Loading competitions...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         COMPETITION FORM
+    ================================== -->
+
+    <section id="competitionFormSection" class="section">
+
+      <div class="page-heading">
+        <h1 id="formHeading">Create Competition</h1>
+        <p>Enter the details for your competition.</p>
+      </div>
+
+
+      <div class="panel">
+
+        <form id="competitionForm">
+
+          <input type="hidden" id="competitionId">
+
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="title">Competition Title</label>
+              <input id="title" required placeholder="Example: Win £10,000 for your dream holiday">
+            </div>
+
+
+            <div class="form-group">
+              <label for="theme">Theme</label>
+
+              <select id="theme">
+                <option value="pets">Pets</option>
+                <option value="dogs">Dogs</option>
+                <option value="cats">Cats</option>
+                <option value="luxury">Luxury</option>
+                <option value="family">Family</option>
+                <option value="seasonal">Seasonal</option>
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="status">Status</label>
+
+              <select id="status">
+                <option value="draft">Draft</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="live">Live</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+
+
+            <div class="form-group full">
+              <label for="description">Description</label>
+              <textarea id="description" placeholder="Describe the competition and prize."></textarea>
+            </div>
+
+
+            <div class="form-group">
+              <label for="prize">Prize</label>
+              <input id="prize" placeholder="Example: £10,000 cash">
+            </div>
+
+
+            <div class="form-group">
+              <label for="prize_value">Prize Value (£)</label>
+              <input id="prize_value" type="number" step="0.01" placeholder="10000">
+            </div>
+
+
+            <div class="form-group">
+              <label for="ticket_quantity">Ticket Quantity</label>
+              <input id="ticket_quantity" type="number" placeholder="10000">
+            </div>
+
+
+            <div class="form-group">
+              <label for="ticket_price">Ticket Price (£)</label>
+              <input id="ticket_price" type="number" step="0.01" placeholder="1.99">
+            </div>
+
+
+            <div class="form-group">
+              <label for="tickets_sold">Tickets Sold</label>
+              <input id="tickets_sold" type="number" value="0">
+            </div>
+
+
+            <div class="form-group">
+              <label for="start_date">Start Date</label>
+              <input id="start_date" type="datetime-local">
+            </div>
+
+
+            <div class="form-group">
+              <label for="closing_date">Closing Date</label>
+              <input id="closing_date" type="datetime-local">
+            </div>
+
+
+            <div class="form-group full">
+              <label for="image_url">Main Image URL</label>
+              <input id="image_url" placeholder="https://...">
+            </div>
+
+
+            <div class="form-group full">
+              <label for="gallery_images">Gallery Images</label>
+              <textarea id="gallery_images" placeholder="Enter image URLs, one per line."></textarea>
+            </div>
+
+
+            <div class="form-group full">
+              <label for="rules">Competition Rules</label>
+              <textarea id="rules" placeholder="Competition rules and legal information."></textarea>
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button type="submit" class="primary-button">
+              Save Competition
+            </button>
+
+            <button
+              type="button"
+              class="secondary-button"
+              onclick="showSection('competitions')"
+            >
+              Cancel
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         PRIZES
+    ================================== -->
+
+    <section id="prizes" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">🎁</div>
+
+        <h2>Prize Management</h2>
+
+        <p>
+          This area will manage prize details, prize values,
+          suppliers, proof of prizes and future winner information.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         TICKETS
+    ================================== -->
+
+    <section id="tickets" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">🎟️</div>
+
+        <h2>Ticket Management</h2>
+
+        <p>
+          This area will eventually manage ticket allocation,
+          ticket sales, ticket numbers, winners and competition capacity.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         PAW FUND
+    ================================== -->
+
+    <section id="pawfund" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">🐾</div>
+
+        <h2>Paw Fund</h2>
+
+        <p>
+          This will become the heart of the Paws & Prizes mission —
+          managing the 5% profit target, applications, approved support,
+          payments and public impact stories.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         CUSTOMERS
+    ================================== -->
+
+    <section id="customers" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">👥</div>
+
+        <h2>Customers</h2>
+
+        <p>
+          Customer accounts, entries, purchase history,
+          winners and responsible customer management will be built here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         PAYMENTS
+    ================================== -->
+
+    <section id="payments" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">💳</div>
+
+        <h2>Payments</h2>
+
+        <p>
+          Stripe payments, transactions, refunds,
+          revenue reporting and financial records will be connected here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         STAFF
+    ================================== -->
+
+    <section id="staff" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">👤</div>
+
+        <h2>Staff Management</h2>
+
+        <p>
+          Staff accounts and permissions will be added here later,
+          allowing different members of the Paws & Prizes team to have
+          different levels of access.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         SETTINGS
+    ================================== -->
+
+    <section id="settings" class="section">
+
+      <div class="panel coming-soon">
+
+        <div class="coming-soon-icon">⚙️</div>
+
+        <h2>Website Settings</h2>
+
+        <p>
+          Business settings, website configuration,
+          security controls and administration settings will live here.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+
+  const API = "/api/competitions";
+
+
+  /* =================================
+     NAVIGATION
+  ================================= */
+
+  function showSection(sectionId, button) {
+
+    document.querySelectorAll(".section").forEach(section => {
+      section.classList.remove("active");
+    });
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.classList.add("active");
+    }
+
+    if (button) {
+
+      document.querySelectorAll(".nav-button").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+
+    if (sectionId === "competitions") {
+      loadCompetitions();
+    }
+
+  }
+
+
+  /* =================================
+     NEW COMPETITION
+  ================================= */
+
+  function newCompetition() {
+
+    document.getElementById("competitionForm").reset();
+
+    document.getElementById("competitionId").value = "";
+
+    document.getElementById("tickets_sold").value = "0";
+
+    document.getElementById("status").value = "draft";
+
+    document.getElementById("formHeading").textContent =
+      "Create Competition";
+
+    document.querySelectorAll(".section").forEach(section => {
+      section.classList.remove("active");
+    });
+
+    document.getElementById("competitionFormSection")
+      .classList.add("active");
+
+  }
+
+
+  /* =================================
+     LOAD COMPETITIONS
+  ================================= */
+
+  async function loadCompetitions() {
+
+    const list = document.getElementById("competitionList");
+
+    list.innerHTML = `
+      <div class="empty">
+        Loading competitions...
+      </div>
+    `;
+
+    try {
+
+      const response = await fetch(API);
+
+      if (!response.ok) {
+        throw new Error("Could not load competitions.");
+      }
+
+      const competitions = await response.json();
+
+      updateStats(competitions);
+
+      if (!competitions.length) {
+
+        list.innerHTML = `
+          <div class="empty">
+            No competitions have been created yet.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      list.innerHTML = competitions.map(comp => {
+
+        const quantity = Number(comp.ticket_quantity || 0);
+
+        const sold = Number(comp.tickets_sold || 0);
+
+        const price = Number(comp.ticket_price || 0);
+
+        const turnover = sold * price;
+
+        const remaining = Math.max(quantity - sold, 0);
+
+
+        return `
+          <div class="competition-card">
+
+            <div class="competition-top">
+
+              <div>
+                <div class="competition-title">
+                  ${escapeHtml(comp.title || "Untitled Competition")}
+                </div>
+
+                <div class="competition-description">
+                  ${escapeHtml(comp.description || "No description")}
+                </div>
+              </div>
+
+              <span class="status">
+                ${escapeHtml(comp.status || "draft")}
+              </span>
+
+            </div>
+
+
+            <div class="competition-details">
+
+              <div class="detail">
+                <div class="detail-label">Ticket Price</div>
+                <div class="detail-value">
+                  £${price.toFixed(2)}
+                </div>
+              </div>
+
+              <div class="detail">
+                <div class="detail-label">Tickets</div>
+                <div class="detail-value">
+                  ${quantity.toLocaleString()}
+                </div>
+              </div>
+
+              <div class="detail">
+                <div class="detail-label">Sold</div>
+                <div class="detail-value">
+                  ${sold.toLocaleString()}
+                </div>
+              </div>
+
+              <div class="detail">
+                <div class="detail-label">Potential Turnover</div>
+                <div class="detail-value">
+                  £${(quantity * price).toFixed(2)}
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="competition-actions">
+
+              <button
+                class="secondary-button"
+                onclick="editCompetition(${comp.id})"
+              >
+                Edit
+              </button>
+
+              <button
+                class="danger-button"
+                onclick="deleteCompetition(${comp.id})"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+
+    } catch (error) {
+
+      list.innerHTML = `
+        <div class="empty">
+          ❌ ${escapeHtml(error.message)}
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  /* =================================
+     UPDATE DASHBOARD STATS
+  ================================= */
+
+  function updateStats(competitions) {
+
+    let totalTickets = 0;
+
+    let totalTurnover = 0;
+
+
+    competitions.forEach(comp => {
+
+      const sold = Number(comp.tickets_sold || 0);
+
+      const price = Number(comp.ticket_price || 0);
+
+      totalTickets += sold;
+
+      totalTurnover += sold * price;
+
+    });
+
+
+    document.getElementById("statCompetitions")
+      .textContent = competitions.length.toLocaleString();
+
+    document.getElementById("statTickets")
+      .textContent = totalTickets.toLocaleString();
+
+    document.getElementById("statTurnover")
+      .textContent = "£" + totalTurnover.toFixed(2);
+
+  }
+
+
+  /* =================================
+     EDIT COMPETITION
+  ================================= */
+
+  async function editCompetition(id) {
+
+    try {
+
+      const response = await fetch(API);
+
+      const competitions = await response.json();
+
+      const comp = competitions.find(item =>
+        Number(item.id) === Number(id)
+      );
+
+
+      if (!comp) {
+        alert("Competition could not be found.");
+        return;
+      }
+
+
+      document.getElementById("competitionId").value =
+        comp.id || "";
+
+      document.getElementById("title").value =
+        comp.title || "";
+
+      document.getElementById("theme").value =
+        comp.theme || "pets";
+
+      document.getElementById("description").value =
+        comp.description || "";
+
+      document.getElementById("prize").value =
+        comp.prize || "";
+
+      document.getElementById("prize_value").value =
+        comp.prize_value || "";
+
+      document.getElementById("ticket_quantity").value =
+        comp.ticket_quantity || "";
+
+      document.getElementById("ticket_price").value =
+        comp.ticket_price || "";
+
+      document.getElementById("tickets_sold").value =
+        comp.tickets_sold || 0;
+
+      document.getElementById("status").value =
+        comp.status || "draft";
+
+      document.getElementById("start_date").value =
+        formatDateForInput(comp.start_date);
+
+      document.getElementById("closing_date").value =
+        formatDateForInput(comp.closing_date);
+
+      document.getElementById("image_url").value =
+        comp.image_url || "";
+
+      document.getElementById("gallery_images").value =
+        comp.gallery_images || "";
+
+      document.getElementById("rules").value =
+        comp.rules || "";
+
+
+      document.getElementById("formHeading").textContent =
+        "Edit Competition";
+
+
+      document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      document.getElementById("competitionFormSection")
+        .classList.add("active");
+
+
+    } catch (error) {
+
+      alert("Could not load the competition.");
+
+    }
+
+  }
+
+
+  /* =================================
+     SAVE COMPETITION
+  ================================= */
+
+  document.getElementById("competitionForm")
+    .addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+
+      const id =
+        document.getElementById("competitionId").value;
+
+
+      const data = {
+
+        title: document.getElementById("title").value,
+
+        theme: document.getElementById("theme").value,
+
+        description: document.getElementById("description").value,
+
+        prize: document.getElementById("prize").value,
+
+        prize_value: document.getElementById("prize_value").value,
+
+        ticket_quantity:
+          document.getElementById("ticket_quantity").value,
+
+        ticket_price:
+          document.getElementById("ticket_price").value,
+
+        tickets_sold:
+          document.getElementById("tickets_sold").value,
+
+        start_date:
+          document.getElementById("start_date").value,
+
+        closing_date:
+          document.getElementById("closing_date").value,
+
+        status:
+          document.getElementById("status").value,
+
+        image_url:
+          document.getElementById("image_url").value,
+
+        gallery_images:
+          document.getElementById("gallery_images").value,
+
+        rules:
+          document.getElementById("rules").value
+
+      };
+
+
+      try {
+
+        let response;
+
+
+        if (id) {
+
+          response = await fetch(`${API}/${id}`, {
+
+            method: "PUT",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+
+          });
+
+        } else {
+
+          response = await fetch(API, {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+
+          });
+
+        }
+
+
+        if (!response.ok) {
+          throw new Error("Could not save competition.");
+        }
+
+
+        alert(
+          id
+            ? "Competition updated successfully."
+            : "Competition created successfully."
+        );
+
+
+        document.getElementById("competitionForm").reset();
+
+        document.getElementById("competitionId").value = "";
+
+
+        showSection("competitions");
+
+        loadCompetitions();
+
+
+      } catch (error) {
+
+        alert("❌ " + error.message);
+
+      }
+
+    });
+
+
+  /* =================================
+     DELETE COMPETITION
+  ================================= */
+
+  async function deleteCompetition(id) {
+
+    const confirmed = confirm(
+      "Are you sure you want to delete this competition?"
+    );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    try {
+
+      const response = await fetch(`${API}/${id}`, {
+        method: "DELETE"
+      });
+
+
+      if (!response.ok) {
+        throw new Error("Could not delete competition.");
+      }
+
+
+      alert("Competition deleted.");
+
+      loadCompetitions();
+
+
+    } catch (error) {
+
+      alert("❌ " + error.message);
+
+    }
+
+  }
+
+
+  /* =================================
+     DATE FORMAT
+  ================================= */
+
+  function formatDateForInput(value) {
+
+    if (!value) {
+      return "";
+    }
+
+
+    const date = new Date(value);
+
+
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+
+
+    const year = date.getFullYear();
+
+    const month = String(date.getMonth() + 1)
+      .padStart(2, "0");
+
+    const day = String(date.getDate())
+      .padStart(2, "0");
+
+    const hours = String(date.getHours())
+      .padStart(2, "0");
+
+    const minutes = String(date.getMinutes())
+      .padStart(2, "0");
+
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+
+  }
+
+
+  /* =================================
+     HTML SAFETY
+  ================================= */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  /* =================================
+     INITIAL LOAD
+  ================================= */
+
+  loadCompetitions();
+
+</script>
 
 </body>
 </html>
