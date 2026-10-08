@@ -156,10 +156,27 @@ export default {
     // ADMIN PAGE
     // ---------------------------------
 
+    if (
+      url.pathname === "/admin" ||
+      url.pathname === "/admin/"
+    ) {
+      return env.ASSETS.fetch(
+        new Request(
+          new URL("/paws-and-prizes-admin.html", request.url),
+          request
+        )
+      );
+    }
+
+    // ---------------------------------
+    // OLD ADMIN URL
+    // Keep this working too
+    // ---------------------------------
+
     if (url.pathname === "/admin.html") {
       return env.ASSETS.fetch(
         new Request(
-          new URL("/src/admin.html", request.url),
+          new URL("/paws-and-prizes-admin.html", request.url),
           request
         )
       );
