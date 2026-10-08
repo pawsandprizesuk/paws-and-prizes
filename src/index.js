@@ -2,9 +2,9 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // ---------------------------------
-    // API HEALTH CHECK
-    // ---------------------------------
+    // =================================
+    // API: HEALTH CHECK
+    // =================================
 
     if (url.pathname === "/api/health") {
       return Response.json({
@@ -13,9 +13,9 @@ export default {
       });
     }
 
-    // ---------------------------------
-    // GET ALL COMPETITIONS
-    // ---------------------------------
+    // =================================
+    // API: GET COMPETITIONS
+    // =================================
 
     if (
       url.pathname === "/api/competitions" &&
@@ -28,9 +28,9 @@ export default {
       return Response.json(results);
     }
 
-    // ---------------------------------
-    // CREATE COMPETITION
-    // ---------------------------------
+    // =================================
+    // API: CREATE COMPETITION
+    // =================================
 
     if (
       url.pathname === "/api/competitions" &&
@@ -39,8 +39,7 @@ export default {
       const data = await request.json();
 
       const result = await env.DB.prepare(`
-        INSERT INTO competitions
-        (
+        INSERT INTO competitions (
           title,
           description,
           prize,
@@ -80,9 +79,9 @@ export default {
       });
     }
 
-    // ---------------------------------
-    // UPDATE COMPETITION
-    // ---------------------------------
+    // =================================
+    // API: UPDATE COMPETITION
+    // =================================
 
     if (
       url.pathname.startsWith("/api/competitions/") &&
@@ -132,9 +131,9 @@ export default {
       });
     }
 
-    // ---------------------------------
-    // DELETE COMPETITION
-    // ---------------------------------
+    // =================================
+    // API: DELETE COMPETITION
+    // =================================
 
     if (
       url.pathname.startsWith("/api/competitions/") &&
@@ -151,25 +150,32 @@ export default {
       });
     }
 
-    // ---------------------------------
-    // ADMIN
-    // ---------------------------------
+    // =================================
+    // ADMIN PAGE
+    // /admin
+    // /admin/
+    // /admin/index.html
+    // =================================
 
     if (
       url.pathname === "/admin" ||
-      url.pathname === "/admin/"
+      url.pathname === "/admin/" ||
+      url.pathname === "/admin/index.html"
     ) {
       return env.ASSETS.fetch(
         new Request(
           new URL("/admin/index.html", request.url),
-          request
+          {
+            method: "GET",
+            headers: request.headers
+          }
         )
       );
     }
 
-    // ---------------------------------
+    // =================================
     // EVERYTHING ELSE
-    // ---------------------------------
+    // =================================
 
     return env.ASSETS.fetch(request);
   }
