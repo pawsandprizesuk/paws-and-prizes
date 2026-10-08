@@ -1,889 +1,1223 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Paws & Prizes | Luxury Pet Competitions</title>
-
-<meta name="description" content="Paws & Prizes — premium pet and family prize competitions across the UK.">
-
-<style>
-
-:root {
-
-  --black:#0b0b0b;
-
-  --black-soft:#151515;
-
-  --gold:#c9a45c;
-
-  --gold-light:#e3c98a;
-
-  --ivory:#f7f3ec;
-
-  --taupe:#b8aaa0;
-
-  --white:#ffffff;
-
-}
-
-* {
-
-  box-sizing:border-box;
-
-  margin:0;
-
-  padding:0;
-
-}
-
-body {
-
-  font-family:Arial, Helvetica, sans-serif;
-
-  background:var(--black);
-
-  color:var(--white);
-
-  line-height:1.6;
-
-}
-
-a {
-
-  color:inherit;
-
-  text-decoration:none;
-
-}
-
-.container {
-
-  width:min(1180px,92%);
-
-  margin:auto;
-
-}
-
-/* NAVIGATION */
-
-nav {
-
-  position:sticky;
-
-  top:0;
-
-  z-index:10;
-
-  background:rgba(11,11,11,.96);
-
-  border-bottom:1px solid rgba(201,164,92,.25);
-
-}
-
-.nav-inner {
-
-  min-height:76px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:25px;
-
-}
-
-.logo {
-
-  font-size:1.35rem;
-
-  letter-spacing:3px;
-
-  font-weight:700;
-
-}
-
-.logo span {
-
-  color:var(--gold);
-
-}
-
-.nav-links {
-
-  display:flex;
-
-  gap:25px;
-
-  color:#ddd;
-
-  font-size:.92rem;
-
-}
-
-.nav-links a:hover {
-
-  color:var(--gold-light);
-
-}
-
-/* HERO */
-
-.hero {
-
-  min-height:650px;
-
-  display:flex;
-
-  align-items:center;
-
-  background:
-
-    linear-gradient(90deg,rgba(0,0,0,.92),rgba(0,0,0,.45)),
-
-    linear-gradient(135deg,#17120e,#050505);
-
-  position:relative;
-
-  overflow:hidden;
-
-}
-
-.hero:after {
-
-  content:"PET PHOTOGRAPHY";
-
-  position:absolute;
-
-  right:-50px;
-
-  bottom:40px;
-
-  font-size:5rem;
-
-  font-weight:800;
-
-  color:rgba(201,164,92,.05); 
-
-  transform:rotate(-8deg);
-
-}
-
-.hero-content {
-
-  max-width:700px;
-
-  position:relative;
-
-  z-index:1;
-
-}
-
-.eyebrow {
-
-  color:var(--gold-light);
-
-  letter-spacing:4px;
-
-  text-transform:uppercase;
-
-  font-size:.78rem;
-
-  margin-bottom:20px;
-
-}
-
-h1 {
-
-  font-family:Georgia,serif;
-
-  font-size:clamp(3rem,7vw,6.2rem);
-
-  line-height:1;
-
-  margin-bottom:25px;
-
-}
-
-h1 span {
-
-  color:var(--gold);
-
-}
-
-.hero p {
-
-  color:#ddd;
-
-  max-width:600px;
-
-  font-size:1.1rem;
-
-  margin-bottom:35px;
-
-}
-
-.button {
-
-  display:inline-block;
-
-  padding:15px 28px;
-
-  background:var(--gold);
-
-  color:#111;
-
-  font-weight:700;
-
-  border-radius:3px;
-
-  letter-spacing:1px;
-
-  transition:.2s;
-
-}
-
-.button:hover {
-
-  background:var(--gold-light);
-
-  transform:translateY(-2px);
-
-}
-
-.button.outline {
-
-  background:transparent;
-
-  color:var(--gold-light);
-
-  border:1px solid var(--gold);
-
-  margin-left:10px;
-
-}
-
-/* SECTION */
-
-.section {
-
-  padding:85px 0;
-
-}
-
-.section.light {
-
-  background:var(--ivory);
-
-  color:#17120f;
-
-}
-
-.section-title {
-
-  text-align:center;
-
-  max-width:700px;
-
-  margin:0 auto 45px;
-
-}
-
-.section-title .eyebrow {
-
-  margin-bottom:10px;
-
-}
-
-.section-title h2 {
-
-  font-family:Georgia,serif;
-
-  font-size:2.6rem;
-
-  margin-bottom:12px;
-
-}
-
-.section-title p {
-
-  color:#777;
-
-}
-
-/* COMPETITIONS */
-
-.competition-grid {
-
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:24px;
-
-}
-
-.card {
-
-  background:#fff;
-
-  border:1px solid #e4ded5;
-
-  box-shadow:0 12px 35px rgba(0,0,0,.08);
-
-  overflow:hidden;
-
-  border-radius:5px;
-
-}
-
-.photo {
-
-  height:230px;
-
-  background:
-
-    linear-gradient(135deg,#3b3029,#151515);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:var(--gold-light);
-
-  letter-spacing:2px;
-
-  font-size:.75rem;
-
-}
-
-.card-body {
-
-  padding:25px;
-
-}
-
-.card h3 {
-
-  font-family:Georgia,serif;
-
-  font-size:1.5rem;
-
-  margin-bottom:8px;
-
-}
-
-.card p {
-
-  color:#777;
-
-  font-size:.9rem;
-
-  margin-bottom:18px;
-
-}
-
-.price {
-
-  font-size:1.4rem;
-
-  font-weight:800;
-
-  color:#17120f;
-
-}
-
-.card-footer {
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:15px;
-
-  margin-top:20px;
-
-}
-
-.mini-button {
-
-  background:#17120f;
-
-  color:var(--gold-light);
-
-  padding:10px 15px;
-
-  border-radius:3px;
-
-  font-size:.82rem;
-
-  font-weight:700;
-
-}
-
-.availability {
-
-  font-size:.78rem;
-
-  color:#777;
-
-}
-
-/* HOW IT WORKS */
-
-.steps {
-
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:25px;
-
-}
-
-.step {
-
-  padding:30px;
-
-  border:1px solid rgba(201,164,92,.28);
-
-  background:var(--black-soft);
-
-}
-
-.number {
-
-  color:var(--gold);
-
-  font-size:2rem;
-
-  font-family:Georgia,serif;
-
-  margin-bottom:15px;
-
-}
-
-.step h3 {
-
-  margin-bottom:10px;
-
-}
-
-.step p {
-
-  color:#aaa;
-
-  font-size:.92rem;
-
-}
-
-/* SPIN */
-
-.spin-section {
-
-  background:
-
-    radial-gradient(circle at center,rgba(201,164,92,.13),transparent 45%),
-
-    #090909;
-
-  text-align:center;
-
-  border-top:1px solid rgba(201,164,92,.25);
-
-  border-bottom:1px solid rgba(201,164,92,.25);
-
-}
-
-.spin-wheel {
-
-  width:240px;
-
-  height:240px;
-
-  border-radius:50%;
-
-  margin:35px auto;
-
-  border:2px solid var(--gold);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  box-shadow:0 0 45px rgba(201,164,92,.13);
-
-  background:
-
-    conic-gradient(
-
-      #181818 0deg 45deg,
-
-      #252018 45deg 90deg,
-
-      #181818 90deg 135deg,
-
-      #252018 135deg 180deg,
-
-      #181818 180deg 225deg,
-
-      #252018 225deg 270deg,
-
-      #181818 270deg 315deg,
-
-      #252018 315deg 360deg
-
-    );
-
-}
-
-.spin-inner {
-
-  width:105px;
-
-  height:105px;
-
-  border-radius:50%;
-
-  background:var(--gold);
-
-  color:#111;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-weight:800;
-
-  font-size:.8rem;
-
-  text-align:center;
-
-  letter-spacing:1px;
-
-}
-
-/* FOOTER */
-
-footer {
-
-  padding:35px 0;
-
-  background:#050505;
-
-  border-top:1px solid rgba(201,164,92,.2);
-
-  color:#888;
-
-  text-align:center;
-
-  font-size:.82rem;
-
-}
-
-footer strong {
-
-  color:var(--gold-light);
-
-}
-
-/* MOBILE */
-
-@media(max-width:800px) {
-
-  .nav-links {
-
-    display:none;
-
-  }
-
-  .hero {
-
-    min-height:600px;
-
-  }
-
-  .competition-grid,
-
-  .steps {
-
-    grid-template-columns:1fr;
-
-  }
-
-  .button.outline {
-
-    margin-left:0;
-
-    margin-top:10px;
-
-  }
-
-  .hero-content {
-
-    padding:30px 0;
-
-  }
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Paws & Prizes | Big Prizes. More Hope.</title>
+
+  <style>
+    :root {
+      --yellow: #f4c542;
+      --yellow-dark: #d6a900;
+      --cream: #fffaf0;
+      --soft-yellow: #fff2c9;
+      --charcoal: #20231f;
+      --muted: #686b64;
+      --white: #ffffff;
+      --green: #536b4d;
+      --border: #eee5d2;
+      --shadow: 0 18px 45px rgba(32, 35, 31, 0.10);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 250, 240, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--yellow);
+      font-size: 1.3rem;
+      box-shadow: 0 8px 20px rgba(244, 197, 66, 0.25);
+    }
+
+    .brand span:last-child {
+      color: var(--yellow-dark);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 0.94rem;
+      font-weight: 750;
+    }
+
+    nav a:hover {
+      color: var(--yellow-dark);
+    }
+
+    .nav-cta {
+      padding: 12px 19px;
+      border-radius: 999px;
+      background: var(--charcoal);
+      color: white !important;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      padding: 40px 0 75px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--soft-yellow);
+      border: 1px solid #f0dda6;
+      border-radius: 999px;
+      color: #705b18;
+      font-weight: 850;
+      font-size: 0.8rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(3.2rem, 7vw, 6.2rem);
+      line-height: 0.91;
+      letter-spacing: -5px;
+    }
+
+    h1 .yellow {
+      color: var(--yellow-dark);
+    }
+
+    .hero-copy {
+      max-width: 555px;
+      margin: 25px 0 29px;
+      font-size: 1.12rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      min-height: 50px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-weight: 850;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(32, 35, 31, 0.12);
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--charcoal);
+    }
+
+    .btn-secondary {
+      background: white;
+      border-color: var(--border);
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-photo img {
+      height: 560px;
+    }
+
+    .hero-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      max-width: 285px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-badge strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.08rem;
+    }
+
+    .hero-badge small {
+      color: var(--muted);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-kicker {
+      margin-bottom: 9px;
+      color: var(--yellow-dark);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .section-intro {
+      max-width: 550px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    /* =========================
+       COMPETITIONS
+    ========================= */
+
+    .competitions-section {
+      background: white;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 32px;
+    }
+
+    .competition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .competition-card {
+      overflow: hidden;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 9px 28px rgba(32, 35, 31, 0.06);
+      transition: 0.2s ease;
+    }
+
+    .competition-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .competition-image {
+      position: relative;
+      height: 230px;
+      background: #e9e1cf;
+    }
+
+    .competition-image img {
+      height: 100%;
+    }
+
+    .status {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--charcoal);
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .competition-body {
+      padding: 22px;
+    }
+
+    .competition-body h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+      line-height: 1.15;
+    }
+
+    .competition-body p {
+      min-height: 48px;
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .competition-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .competition-meta strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 50px;
+      text-align: center;
+      color: var(--muted);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    /* =========================
+       GIVE HOPE
+    ========================= */
+
+    .hope {
+      background: var(--yellow);
+    }
+
+    .hope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .hope h2 {
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+    }
+
+    .hope-copy {
+      max-width: 570px;
+      margin: 22px 0;
+      font-size: 1.1rem;
+    }
+
+    .hope-image {
+      height: 510px;
+      overflow: hidden;
+      border-radius: 32px;
+      box-shadow: 0 22px 50px rgba(32, 35, 31, 0.18);
+    }
+
+    .hope-image img {
+      height: 100%;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .step {
+      padding: 30px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: var(--yellow);
+      font-weight: 950;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* =========================
+       PAW FUND
+    ========================= */
+
+    .fund {
+      background: var(--charcoal);
+      color: white;
+    }
+
+    .fund-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .fund .section-kicker {
+      color: var(--yellow);
+    }
+
+    .fund p {
+      max-width: 650px;
+      color: #d5d8d2;
+      font-size: 1.05rem;
+    }
+
+    .fund-card {
+      padding: 30px;
+      background: #2d302b;
+      border: 1px solid #44483f;
+      border-radius: 28px;
+    }
+
+    .fund-card .paw {
+      margin-bottom: 12px;
+      font-size: 2.4rem;
+    }
+
+    .fund-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+    }
+
+    .fund-card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 0;
+      background: var(--charcoal);
+      color: #d5d8d2;
+      border-top: 1px solid #3c403a;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      nav a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero-grid,
+      .hope-grid,
+      .fund-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 420px;
+      }
+
+      .hero-photo img {
+        height: 420px;
+      }
+
+      .competition-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .hope-image {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .container {
+        width: min(100% - 26px, 1160px);
+      }
+
+      .hero {
+        padding-top: 25px;
+      }
+
+      h1 {
+        font-size: 3.25rem;
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .hero-photo {
+        min-height: 360px;
+      }
+
+      .hero-photo img {
+        height: 360px;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+
+      .footer-inner > * + * {
+        margin-top: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
 
-  <div class="container nav-inner">
+  <header>
+    <div class="container nav">
 
-    <div class="logo">PAWS <span>&</span> PRIZES</div>
+      <a href="#" class="brand">
+        <span class="brand-mark">🐾</span>
+        <span>PAWS <span>&</span> PRIZES</span>
+      </a>
 
-    <div class="nav-links">
-
-      <a href="#competitions">Competitions</a>
-
-      <a href="#how">How It Works</a>
-
-      <a href="#reveal">Spin To Reveal</a>
-
-    </div>
-
-  </div>
-
-</nav>
-
-<section class="hero">
-
-  <div class="container hero-content">
-
-    <div class="eyebrow">Premium UK Pet Competitions</div>
-
-    <h1>Big prizes.<br><span>Happy paws.</span></h1>
-
-    <p>
-
-      Beautiful competitions created for pet lovers and families,
-
-      with exciting prizes and a premium experience from entry to reveal.
-
-    </p>
-
-    <a class="button" href="#competitions">VIEW COMPETITIONS</a>
-
-    <a class="button outline" href="#how">HOW IT WORKS</a>
-
-  </div>
-
-</section>
-
-<section class="section light" id="competitions">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <div class="eyebrow">Featured competitions</div>
-
-      <h2>Something wonderful could be waiting.</h2>
-
-      <p>Demo competitions shown below while Paws & Prizes is being developed.</p>
+      <nav>
+        <a href="#competitions">Competitions</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#paw-fund">Paw Fund</a>
+        <a href="#competitions" class="nav-cta">Enter Now</a>
+      </nav>
 
     </div>
+  </header>
 
-    <div class="competition-grid">
 
-      <article class="card">
+  <main>
 
-        <div class="photo">PROFESSIONAL PET PHOTO</div>
+    <!-- =========================
+         HERO
+    ========================= -->
 
-        <div class="card-body">
+    <section class="hero">
 
-          <h3>The Pet Lover's Prize</h3>
+      <div class="container hero-grid">
 
-          <p>A premium prize experience created for people who adore their pets.</p>
+        <div>
 
-          <div class="price">£3 entry</div>
+          <div class="eyebrow">
+            🐾 PET-LOVING COMPETITIONS
+          </div>
 
-          <div class="card-footer">
+          <h1>
+            Big prizes.<br>
+            <span class="yellow">More hope.</span>
+          </h1>
 
-            <span class="availability">Demo availability</span>
+          <p class="hero-copy">
+            Enter exciting prize competitions made for animal lovers —
+            with a bigger purpose behind the fun.
+          </p>
 
-            <a class="mini-button" href="#reveal">VIEW PRIZE</a>
+          <div class="hero-actions">
+
+            <a class="btn btn-primary" href="#competitions">
+              View Competitions →
+            </a>
+
+            <a class="btn btn-secondary" href="#how-it-works">
+              How It Works
+            </a>
 
           </div>
 
         </div>
 
-      </article>
 
-      <article class="card">
+        <div class="hero-photo">
 
-        <div class="photo">PROFESSIONAL FAMILY PHOTO</div>
+          <img
+            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=85"
+            alt="Happy golden retriever"
+          >
 
-        <div class="card-body">
+          <div class="hero-badge">
 
-          <h3>Family Fun Prize</h3>
+            <strong>
+              Every win starts with a little hope.
+            </strong>
 
-          <p>A family-friendly competition designed to create memorable moments.</p>
-
-          <div class="price">£3 entry</div>
-
-          <div class="card-footer">
-
-            <span class="availability">Demo availability</span>
-
-            <a class="mini-button" href="#reveal">VIEW PRIZE</a>
+            <small>
+              Built for people who love pets and love winning.
+            </small>
 
           </div>
 
         </div>
 
-      </article>
+      </div>
 
-      <article class="card">
+    </section>
 
-        <div class="photo">PREMIUM PRIZE PHOTO</div>
 
-        <div class="card-body">
+    <!-- =========================
+         COMPETITIONS
+    ========================= -->
 
-          <h3>The Big Prize</h3>
+    <section id="competitions" class="competitions-section">
 
-          <p>A larger prize concept with the full Paws & Prizes reveal experience.</p>
+      <div class="container">
 
-          <div class="price">£5 entry</div>
+        <div class="section-head">
 
-          <div class="card-footer">
+          <div>
 
-            <span class="availability">Demo availability</span>
+            <div class="section-kicker">
+              What's up for grabs?
+            </div>
 
-            <a class="mini-button" href="#reveal">VIEW PRIZE</a>
+            <h2>
+              Live competitions
+            </h2>
+
+            <p class="section-intro">
+              Find your favorite, choose your entries and see where your luck takes you.
+            </p>
 
           </div>
 
         </div>
 
-      </article>
 
-    </div>
+        <div id="competitionGrid" class="competition-grid">
 
-  </div>
+          <div class="empty">
+            Loading competitions…
+          </div>
 
-</section>
-
-<section class="section" id="how">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <div class="eyebrow">Simple. Exciting. Transparent.</div>
-
-      <h2>How Paws & Prizes works</h2>
-
-    </div>
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="number">01</div>
-
-        <h3>Choose your competition</h3>
-
-        <p>Browse the available competitions and select the one you love.</p>
+        </div>
 
       </div>
 
-      <div class="step">
+    </section>
 
-        <div class="number">02</div>
 
-        <h3>Choose your entries</h3>
+    <!-- =========================
+         GIVE HOPE
+    ========================= -->
 
-        <p>Select your entries and see availability update as the competition fills.</p>
+    <section class="hope">
+
+      <div class="container hope-grid">
+
+        <div>
+
+          <div class="section-kicker">
+            Give hope
+          </div>
+
+          <h2>
+            Win something wonderful.
+            Help make something better.
+          </h2>
+
+          <p class="hope-copy">
+            Paws & Prizes is about more than competitions.
+            As the business grows, the Paw Fund will help us support
+            animals and pet families who need a little help.
+          </p>
+
+          <a class="btn btn-secondary" href="#paw-fund">
+            Discover the Paw Fund →
+          </a>
+
+        </div>
+
+
+        <div class="hope-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=1100&q=85"
+            alt="Cat looking toward the camera"
+          >
+
+        </div>
 
       </div>
 
-      <div class="step">
+    </section>
 
-        <div class="number">03</div>
 
-        <h3>Watch the reveal</h3>
+    <!-- =========================
+         HOW IT WORKS
+    ========================= -->
 
-        <p>When the competition is ready, experience the exciting spin-to-reveal moment.</p>
+    <section id="how-it-works">
 
+      <div class="container">
+
+        <div class="section-kicker">
+          Simple from start to finish
+        </div>
+
+        <h2>
+          How it works
+        </h2>
+
+
+        <div class="steps">
+
+          <article class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <h3>
+              Choose your competition
+            </h3>
+
+            <p>
+              Browse the competitions currently available
+              and find a prize you love.
+            </p>
+
+          </article>
+
+
+          <article class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <h3>
+              Choose your entries
+            </h3>
+
+            <p>
+              Select how many entries you want and follow
+              the checkout process.
+            </p>
+
+          </article>
+
+
+          <article class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <h3>
+              Keep your paws crossed
+            </h3>
+
+            <p>
+              Once the competition closes, the winning process
+              takes place as described in the competition rules.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PAW FUND
+    ========================= -->
+
+    <section id="paw-fund" class="fund">
+
+      <div class="container fund-grid">
+
+        <div>
+
+          <div class="section-kicker">
+            The Paw Fund
+          </div>
+
+          <h2>
+            A little bit of winning
+            can create a lot of hope.
+          </h2>
+
+          <p>
+            The long-term goal is for Paws & Prizes to give
+            something back to the animals and families behind
+            the reason we all love pets so much.
+          </p>
+
+          <p>
+            We'll share real stories and real impact here
+            as the Paw Fund grows.
+          </p>
+
+        </div>
+
+
+        <div class="fund-card">
+
+          <div class="paw">
+            🐾
+          </div>
+
+          <h3>
+            Everyone wins in their own way.
+          </h3>
+
+          <p>
+            You could win the prize.
+            An animal could get the help it needs.
+            And together, we can build something that genuinely matters.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        <strong>🐾 Paws & Prizes</strong>
+        — Big prizes. More hope.
+      </div>
+
+      <div>
+        © 2026 Paws & Prizes UK
       </div>
 
     </div>
 
-  </div>
+  </footer>
 
-</section>
 
-<section class="section spin-section" id="reveal">
+  <!-- =========================
+       D1 COMPETITION CONNECTION
+  ========================= -->
 
-  <div class="container">
+  <script>
 
-    <div class="section-title">
+    const competitionGrid =
+      document.getElementById("competitionGrid");
 
-      <div class="eyebrow">The Paws & Prizes reveal</div>
 
-      <h2>Spin to reveal.</h2>
+    function escapeHtml(value) {
 
-      <p>
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
-        A premium visual reveal experience is being developed.
+    }
 
-        The prize remains hidden until the secure result is returned.
 
-      </p>
+    function money(value) {
 
-    </div>
+      const number = Number(value);
 
-    <div class="spin-wheel">
+      if (!Number.isFinite(number)) {
+        return "£0.00";
+      }
 
-      <div class="spin-inner">
+      return new Intl.NumberFormat("en-GB", {
+        style: "currency",
+        currency: "GBP"
+      }).format(number);
 
-        SPIN<br>TO<br>REVEAL
+    }
 
-      </div>
 
-    </div>
+    function formatDate(value) {
 
-    <a class="button" href="#competitions">EXPLORE COMPETITIONS</a>
+      if (!value) {
+        return "Date to be announced";
+      }
 
-  </div>
+      const date = new Date(value);
 
-</section>
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
 
-<footer>
+      return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
 
-  <div class="container">
+    }
 
-    <strong>PAWS & PRIZES</strong><br><br>
 
-    © 2026 Paws & Prizes. Demo website — not currently accepting paid entries.
+    function fallbackImage(title) {
 
-  </div>
+      const text =
+        encodeURIComponent(title || "Paws & Prizes");
 
-</footer>
+      return `https://placehold.co/900x600/f4c542/20231f?text=${text}`;
+
+    }
+
+
+    function renderCompetitions(competitions) {
+
+      if (
+        !Array.isArray(competitions) ||
+        competitions.length === 0
+      ) {
+
+        competitionGrid.innerHTML = `
+          <div class="empty">
+
+            <strong>No competitions yet.</strong>
+
+            <br>
+
+            Create one from your Admin area
+            and it will appear here automatically.
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      competitionGrid.innerHTML =
+        competitions.map(comp => {
+
+          const image =
+            comp.image_url &&
+            comp.image_url.trim()
+              ? comp.image_url.trim()
+              : fallbackImage(comp.title);
+
+
+          const remaining = Math.max(
+            0,
+            Number(comp.ticket_quantity || 0) -
+            Number(comp.tickets_sold || 0)
+          );
+
+
+          return `
+
+            <article class="competition-card">
+
+              <div class="competition-image">
+
+                <img
+                  src="${escapeHtml(image)}"
+                  alt="${escapeHtml(comp.title)}"
+                  loading="lazy"
+                  onerror="this.src='${fallbackImage(comp.title)}'"
+                >
+
+                <span class="status">
+                  ${escapeHtml(comp.status || "Preview")}
+                </span>
+
+              </div>
+
+
+              <div class="competition-body">
+
+                <h3>
+                  ${escapeHtml(comp.title)}
+                </h3>
+
+
+                <p>
+                  ${
+                    escapeHtml(
+                      comp.description ||
+                      "An exciting Paws & Prizes competition."
+                    )
+                  }
+                </p>
+
+
+                <div class="competition-meta">
+
+                  <div>
+
+                    <small>
+                      Prize
+                    </small>
+
+                    <strong>
+                      ${
+                        escapeHtml(
+                          comp.prize ||
+                          money(comp.prize_value)
+                        )
+                      }
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <small>
+                      Entry
+                    </small>
+
+                    <strong>
+                      ${money(comp.ticket_price)}
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="competition-meta"
+                  style="border-top:0; padding-top:12px;"
+                >
+
+                  <div>
+
+                    <small>
+                      Entries left
+                    </small>
+
+                    <strong>
+                      ${remaining.toLocaleString("en-GB")}
+                    </strong>
+
+                  </div>
+
+
+                  <div style="text-align:right;">
+
+                    <small>
+                      Closes
+                    </small>
+
+                    <strong>
+                      ${escapeHtml(
+                        formatDate(comp.closing_date)
+                      )}
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <a
+                  class="btn btn-primary"
+                  style="width:100%; margin-top:15px;"
+                  href="#"
+                  onclick="return false;"
+                >
+                  Enter Competition →
+                </a>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }).join("");
+
+    }
+
+
+    async function loadCompetitions() {
+
+      try {
+
+        const response =
+          await fetch("/api/competitions");
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Competition API returned an error."
+          );
+
+        }
+
+
+        const competitions =
+          await response.json();
+
+
+        renderCompetitions(competitions);
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+
+        competitionGrid.innerHTML = `
+
+          <div class="empty">
+
+            <strong>
+              Competition preview unavailable.
+            </strong>
+
+            <br>
+
+            The public page could not reach
+            the competition API.
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+    loadCompetitions();
+
+  </script>
 
 </body>
-
 </html>
