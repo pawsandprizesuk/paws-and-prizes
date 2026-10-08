@@ -89,7 +89,6 @@ export default {
       request.method === "PUT"
     ) {
       const id = url.pathname.split("/").pop();
-
       const data = await request.json();
 
       await env.DB.prepare(`
@@ -153,7 +152,7 @@ export default {
     }
 
     // ---------------------------------
-    // ADMIN PAGE
+    // ADMIN
     // ---------------------------------
 
     if (
@@ -162,21 +161,7 @@ export default {
     ) {
       return env.ASSETS.fetch(
         new Request(
-          new URL("/paws-and-prizes-admin.html", request.url),
-          request
-        )
-      );
-    }
-
-    // ---------------------------------
-    // OLD ADMIN URL
-    // Keep this working too
-    // ---------------------------------
-
-    if (url.pathname === "/admin.html") {
-      return env.ASSETS.fetch(
-        new Request(
-          new URL("/paws-and-prizes-admin.html", request.url),
+          new URL("/admin/index.html", request.url),
           request
         )
       );
