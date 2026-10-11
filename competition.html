@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf0">
+  <meta name="description" content="Discover the prizes and competition details at Paws & Prizes.">
   <title>Competition | Paws & Prizes</title>
 
   <style>
@@ -11,607 +13,401 @@
       --yellow: #f4c542;
       --yellow-dark: #d9a900;
       --cream: #fffaf0;
-      --white: #ffffff;
+      --white: #fff;
       --charcoal: #242424;
       --muted: #6d6d6d;
       --border: #eee7d7;
       --green: #557a55;
-      --shadow: 0 18px 50px rgba(36, 36, 36, 0.10);
+      --red: #a52b2b;
+      --shadow: 0 18px 50px rgba(36,36,36,.10);
       --radius: 24px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       background: var(--cream);
       color: var(--charcoal);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 3px solid #8b6a00;
+      outline-offset: 3px;
     }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    /* NAVIGATION */
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255, 250, 240, 0.96);
-      backdrop-filter: blur(12px);
+      z-index: 10;
+      background: rgba(255,250,240,.97);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
       max-width: 1200px;
+      min-height: 76px;
+      padding: 12px 24px;
       margin: auto;
-      min-height: 78px;
-      padding: 0 24px;
-
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      align-items: center;
+      gap: 20px;
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
+      font-size: 1.2rem;
       font-weight: 900;
-      font-size: 1.25rem;
-      letter-spacing: -0.5px;
     }
 
     .logo-paw {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--yellow);
-
       display: grid;
       place-items: center;
-
-      font-size: 1.25rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--yellow);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 26px;
-      font-size: 0.95rem;
-      font-weight: 700;
+      gap: 24px;
+      font-size: .92rem;
+      font-weight: 750;
     }
 
-    .nav-links a:hover {
-      color: var(--yellow-dark);
-    }
+    .nav-links a:hover, .back-link:hover { color: var(--yellow-dark); }
 
-    .nav-button {
+    .nav-button, .home-button {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 999px;
       background: var(--charcoal);
       color: white;
-      padding: 12px 18px;
-      border-radius: 999px;
       font-weight: 800;
     }
 
-    .nav-button:hover {
-      background: #000;
-    }
-
-    /* HERO */
-
-    .hero {
+    .hero, .lower, .give-hope {
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 55px 24px 30px;
+      margin: auto;
+      padding-left: 24px;
+      padding-right: 24px;
     }
+
+    .hero { padding-top: 42px; padding-bottom: 28px; }
 
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 28px;
+      display: inline-block;
+      margin-bottom: 24px;
       font-weight: 800;
-      color: #555;
-    }
-
-    .back-link:hover {
-      color: var(--charcoal);
     }
 
     .competition-layout {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 42px;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 34px;
       align-items: start;
     }
 
-    /* IMAGE */
-
     .competition-image-wrap {
       position: relative;
+      min-height: 420px;
       overflow: hidden;
-      border-radius: 30px;
+      border-radius: 28px;
       background: #eee;
       box-shadow: var(--shadow);
-      min-height: 500px;
     }
 
     .competition-image {
+      display: block;
       width: 100%;
       height: 100%;
-      min-height: 500px;
+      min-height: 420px;
       object-fit: cover;
-      display: block;
     }
 
     .hope-badge {
       position: absolute;
-      left: 24px;
-      bottom: 24px;
-
-      background: var(--yellow);
-      color: var(--charcoal);
-
-      padding: 12px 17px;
+      left: 20px;
+      bottom: 20px;
+      max-width: calc(100% - 40px);
+      padding: 11px 16px;
       border-radius: 999px;
-
-      font-size: 0.9rem;
-      font-weight: 900;
-
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+      background: var(--yellow);
+      font-weight: 850;
+      box-shadow: 0 8px 24px #0002;
     }
 
-    /* DETAILS */
-
-    .details-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 34px;
-      box-shadow: var(--shadow);
+    .details-card, .content-card {
+      padding: 30px;
       border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      min-width: 0;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-
-      background: #fff3bf;
-      color: #725900;
-
-      padding: 8px 13px;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 7px 12px;
       border-radius: 999px;
-
-      font-size: 0.78rem;
+      background: #eaf3e8;
+      color: #345b35;
+      font-size: .78rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.7px;
-
-      margin-bottom: 18px;
+      letter-spacing: .5px;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--green);
     }
 
     h1 {
-      font-size: clamp(2.1rem, 5vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      overflow-wrap: anywhere;
     }
 
-    .description {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 28px;
-    }
-
-    /* PRIZE */
+    .description { color: var(--muted); margin-bottom: 24px; }
 
     .prize-box {
+      padding: 22px;
+      margin-bottom: 22px;
+      border-radius: 19px;
       background: var(--charcoal);
       color: white;
-      border-radius: 20px;
-      padding: 23px;
-      margin-bottom: 25px;
     }
 
-    .prize-label {
-      color: #ddd;
-      font-size: 0.78rem;
-      font-weight: 800;
+    .prize-label, .stat-label {
+      font-size: .74rem;
+      font-weight: 850;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 5px;
+      letter-spacing: .6px;
     }
 
-    .prize {
-      font-size: 1.55rem;
-      font-weight: 900;
-    }
-
-    /* STATS */
+    .prize-label { color: #ddd; }
+    .prize { font-size: 1.45rem; font-weight: 900; overflow-wrap: anywhere; }
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 11px;
+      margin-bottom: 22px;
     }
 
     .stat {
+      padding: 15px;
       border: 1px solid var(--border);
+      border-radius: 15px;
       background: #fffdf8;
-      border-radius: 17px;
-      padding: 17px;
+      min-width: 0;
     }
 
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-    }
+    .stat-label { color: var(--muted); }
+    .stat-value { margin-top: 4px; font-size: 1.08rem; font-weight: 900; overflow-wrap: anywhere; }
 
-    .stat-value {
-      margin-top: 3px;
-      font-size: 1.2rem;
-      font-weight: 900;
-    }
-
-    /* PROGRESS */
-
-    .progress-section {
-      margin-bottom: 28px;
-    }
-
+    .progress-section { margin-bottom: 24px; }
     .progress-top {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 9px;
-      font-size: 0.9rem;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: .86rem;
       font-weight: 800;
     }
 
     .progress-bar {
-      height: 11px;
+      height: 10px;
+      overflow: hidden;
       border-radius: 999px;
       background: #eee9dc;
-      overflow: hidden;
     }
 
     .progress-fill {
+      width: 0;
       height: 100%;
-      width: 0%;
-      background: var(--yellow);
       border-radius: inherit;
-      transition: width 0.4s ease;
+      background: var(--yellow);
+      transition: width .25s ease;
     }
-
-    /* ENTRY SELECTOR */
 
     .entry-box {
-      background: #fffaf0;
+      padding: 20px;
+      margin-bottom: 18px;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-      margin-bottom: 20px;
+      border-radius: 19px;
+      background: var(--cream);
     }
 
-    .entry-box h2 {
-      font-size: 1.15rem;
-      margin-bottom: 15px;
-    }
+    .entry-box h2 { margin-bottom: 14px; font-size: 1.12rem; }
 
     .quantity-row {
       display: grid;
-      grid-template-columns: 52px 1fr 52px;
-      gap: 10px;
-      align-items: center;
+      grid-template-columns: 48px minmax(0,1fr) 48px;
+      gap: 9px;
     }
 
     .quantity-button {
-      width: 52px;
-      height: 52px;
+      height: 48px;
       border: 0;
-      border-radius: 15px;
+      border-radius: 13px;
       background: var(--charcoal);
       color: white;
-      cursor: pointer;
       font-size: 1.4rem;
       font-weight: 900;
+      cursor: pointer;
     }
 
-    .quantity-button:hover {
-      background: #000;
-    }
+    .quantity-button:disabled { opacity: .35; cursor: not-allowed; }
 
     .quantity-input {
       width: 100%;
-      height: 52px;
+      min-width: 0;
+      height: 48px;
       border: 2px solid var(--border);
-      border-radius: 15px;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 900;
+      border-radius: 13px;
       background: white;
-      outline: none;
-    }
-
-    .quantity-input:focus {
-      border-color: var(--yellow);
+      text-align: center;
+      font-weight: 900;
+      font-size: 1.15rem;
     }
 
     .total-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 18px;
-      padding-top: 18px;
+      gap: 12px;
+      padding-top: 16px;
+      margin-top: 16px;
       border-top: 1px solid var(--border);
     }
 
-    .total-label {
-      color: var(--muted);
-      font-weight: 800;
-    }
-
-    .total {
-      font-size: 1.5rem;
-      font-weight: 900;
-    }
+    .total-label { color: var(--muted); font-weight: 800; }
+    .total { font-size: 1.4rem; font-weight: 900; }
 
     .enter-button {
       width: 100%;
+      padding: 16px 20px;
       border: 0;
       border-radius: 999px;
       background: var(--yellow);
       color: var(--charcoal);
-      padding: 17px 22px;
-      cursor: pointer;
       font-weight: 900;
-      font-size: 1rem;
-      box-shadow: 0 10px 25px rgba(244, 197, 66, 0.28);
+      cursor: pointer;
+      box-shadow: 0 8px 22px #f4c54244;
     }
 
-    .enter-button:hover {
-      background: #e9b92c;
-      transform: translateY(-1px);
-    }
+    .enter-button:hover:not(:disabled) { background: #e9b92c; }
+    .enter-button:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
 
     .small-note {
+      margin-top: 12px;
+      color: var(--muted);
       text-align: center;
-      color: var(--muted);
-      font-size: 0.78rem;
-      margin-top: 13px;
+      font-size: .78rem;
     }
 
-    /* LOWER CONTENT */
+    .lower { padding-top: 24px; padding-bottom: 65px; }
+    .lower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .content-card { box-shadow: none; }
+    .content-card h2 { margin-bottom: 12px; font-size: 1.35rem; }
+    .content-card p { color: var(--muted); white-space: pre-line; overflow-wrap: anywhere; }
 
-    .lower {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 45px 24px 80px;
-    }
-
-    .lower-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    .content-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-    }
-
-    .content-card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-
-    .content-card p {
-      color: var(--muted);
-      white-space: pre-line;
-    }
-
-    /* GIVE HOPE */
-
-    .give-hope {
-      max-width: 1200px;
-      margin: 0 auto 70px;
-      padding: 0 24px;
-    }
+    .give-hope { padding-bottom: 65px; }
 
     .hope-panel {
-      background: var(--yellow);
-      border-radius: 30px;
-      padding: 42px;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      gap: 35px;
+      gap: 24px;
+      padding: 36px;
+      border-radius: 28px;
+      background: var(--yellow);
     }
 
     .hope-panel h2 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      line-height: 1.1;
-      letter-spacing: -1px;
       margin-bottom: 12px;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.15;
     }
 
-    .hope-panel p {
-      max-width: 650px;
-      color: #4f430d;
-    }
+    .hope-panel p { max-width: 680px; color: #4f430d; }
+    .hope-paw { font-size: 4rem; }
 
-    .hope-paw {
-      font-size: 5rem;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: var(--charcoal);
-      color: white;
-      padding: 45px 24px;
-    }
-
+    footer { padding: 36px 24px; background: var(--charcoal); color: white; }
     .footer-inner {
-      max-width: 1200px;
+      max-width: 1152px;
       margin: auto;
-
       display: flex;
       justify-content: space-between;
-      gap: 25px;
       align-items: center;
+      gap: 20px;
     }
+    .footer-brand { font-weight: 900; }
+    .footer-note { color: #ccc; font-size: .85rem; }
 
-    .footer-brand {
-      font-weight: 900;
-      font-size: 1.1rem;
-    }
-
-    .footer-note {
-      color: #aaa;
-      font-size: 0.85rem;
-    }
-
-    /* LOADING / ERROR */
-
-    .loading {
-      text-align: center;
-      padding: 100px 20px;
-      font-weight: 800;
-      color: var(--muted);
-    }
-
-    .error-box {
+    .message {
       max-width: 700px;
-      margin: 80px auto;
-      background: white;
+      margin: 70px auto;
+      padding: 36px 24px;
       border: 1px solid var(--border);
-      border-radius: 25px;
-      padding: 40px;
+      border-radius: 24px;
+      background: white;
       text-align: center;
       box-shadow: var(--shadow);
     }
 
-    .error-box h1 {
-      font-size: 2rem;
-      letter-spacing: -1px;
-    }
-
-    .error-box p {
-      color: var(--muted);
-      margin: 15px 0 25px;
-    }
-
-    .home-button {
-      display: inline-block;
-      background: var(--charcoal);
-      color: white;
-      padding: 13px 20px;
-      border-radius: 999px;
-      font-weight: 800;
-    }
-
-    /* MOBILE */
+    .message h1 { font-size: 2rem; letter-spacing: -1px; }
+    .message p { margin: 12px 0 22px; color: var(--muted); }
+    .message .home-button { margin-top: 4px; }
+    .error-text { color: var(--red); }
 
     @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-      }
-
-      .competition-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .competition-image-wrap,
-      .competition-image {
-        min-height: 360px;
-      }
-
-      .lower-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hope-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .hope-paw {
-        display: none;
-      }
+      .nav-links { display: none; }
+      .competition-layout, .lower-grid { grid-template-columns: 1fr; }
+      .competition-image-wrap, .competition-image { min-height: 330px; }
     }
 
     @media (max-width: 520px) {
-      .hero {
-        padding-top: 30px;
-      }
+      .nav-inner { min-height: 66px; padding: 10px 16px; }
+      .hero, .lower, .give-hope { padding-left: 16px; padding-right: 16px; }
+      .hero { padding-top: 24px; }
+      .details-card, .content-card { padding: 21px; }
+      .competition-image-wrap, .competition-image { min-height: 260px; }
+      .hope-panel { grid-template-columns: 1fr; padding: 25px; }
+      .hope-paw { display: none; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .stat { padding: 12px; }
+    }
 
-      .details-card {
-        padding: 23px;
-      }
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      h1 {
-        font-size: 2.3rem;
-      }
-
-      .hope-panel {
-        padding: 30px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- NAVIGATION -->
-
   <nav>
     <div class="nav-inner">
-
-      <a href="/" class="logo">
-        <span class="logo-paw">🐾</span>
+      <a href="/" class="logo" aria-label="Paws & Prizes home">
+        <span class="logo-paw" aria-hidden="true">🐾</span>
         <span>Paws & Prizes</span>
       </a>
 
@@ -621,631 +417,445 @@
         <a href="/#paw-fund">Paw Fund</a>
         <a href="/" class="nav-button">Back Home</a>
       </div>
-
     </div>
   </nav>
 
-
-  <!-- MAIN CONTENT -->
-
-  <main id="page">
-
-    <div class="loading">
-      Loading your competition...
+  <main id="page" aria-live="polite">
+    <div class="message">
+      <p>🐾 Loading competition details…</p>
     </div>
-
   </main>
-
-
-  <!-- FOOTER -->
 
   <footer>
     <div class="footer-inner">
-
-      <div class="footer-brand">
-        🐾 Paws & Prizes
-      </div>
-
-      <div class="footer-note">
-        Big prizes. More hope. One paw at a time.
-      </div>
-
+      <div class="footer-brand">🐾 Paws & Prizes</div>
+      <div class="footer-note">Big prizes. More hope. One paw at a time.</div>
     </div>
   </footer>
 
-
   <script>
+    "use strict";
 
     const page = document.getElementById("page");
-
-    /*
-      The competition ID comes from the URL.
-
-      Example:
-
-      /competition.html?id=1
-
-      This allows ONE competition page
-      to display any competition stored in D1.
-    */
-
     const params = new URLSearchParams(window.location.search);
     const competitionId = params.get("id");
-
 
     let competition = null;
     let quantity = 1;
 
-
-    function formatMoney(value) {
-
-      const number = Number(value || 0);
-
-      return new Intl.NumberFormat("en-GB", {
-        style: "currency",
-        currency: "GBP"
-      }).format(number);
-
-    }
-
-
-    function formatDate(value) {
-
-      if (!value) {
-        return "To be confirmed";
-      }
-
-      const date = new Date(value);
-
-      if (Number.isNaN(date.getTime())) {
-        return value;
-      }
-
-      return date.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      });
-
-    }
-
+    const fallbackImage =
+      "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=85";
 
     function escapeHtml(value) {
-
       return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
     }
 
+    function formatMoney(value) {
+      const number = Number(value);
+      if (!Number.isFinite(number) || number < 0) return "To be confirmed";
 
-    function getImage() {
+      return new Intl.NumberFormat("en-GB", {
+        style: "currency",
+        currency: "GBP"
+      }).format(number);
+    }
 
-      if (competition.image_url && competition.image_url.trim()) {
-        return competition.image_url;
+    function formatDate(value) {
+      if (!value) return "To be confirmed";
+
+      const text = String(value);
+      let date;
+
+      // Parse date-only values as local dates to avoid a timezone shift.
+      const dateOnly = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+      if (dateOnly) {
+        date = new Date(
+          Number(dateOnly[1]),
+          Number(dateOnly[2]) - 1,
+          Number(dateOnly[3])
+        );
+      } else {
+        date = new Date(text);
       }
 
-      return "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=85";
+      if (Number.isNaN(date.getTime())) return "To be confirmed";
 
+      return new Intl.DateTimeFormat("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(date);
     }
 
+    function safeImageUrl(value) {
+      if (!value || typeof value !== "string") return fallbackImage;
+
+      try {
+        const url = new URL(value, window.location.origin);
+        if (url.protocol === "https:" || url.protocol === "http:") {
+          return url.href;
+        }
+      } catch (_) {}
+
+      return fallbackImage;
+    }
+
+    function getInventory() {
+      const total = Number(competition?.ticket_quantity);
+      const sold = Number(competition?.tickets_sold);
+
+      if (!Number.isSafeInteger(total) || total < 0 ||
+          !Number.isSafeInteger(sold) || sold < 0) {
+        return { total: 0, sold: 0, remaining: 0 };
+      }
+
+      return {
+        total,
+        sold: Math.min(sold, total),
+        remaining: Math.max(total - sold, 0)
+      };
+    }
+
+    function getTicketPrice() {
+      const price = Number(competition?.ticket_price);
+      return Number.isFinite(price) && price >= 0 ? price : 0;
+    }
+
+    function showMessage(title, message, isError = false) {
+      document.title = `${title} | Paws & Prizes`;
+
+      page.innerHTML = `
+        <section class="hero">
+          <div class="message">
+            <h1>${escapeHtml(title)}</h1>
+            <p>${escapeHtml(message)}</p>
+            <a href="/" class="home-button">Back to Paws & Prizes</a>
+          </div>
+        </section>
+      `;
+
+      if (isError) {
+        const heading = page.querySelector("h1");
+        if (heading) heading.classList.add("error-text");
+      }
+    }
 
     function renderCompetition() {
-
-      const totalTickets = Number(competition.ticket_quantity || 0);
-      const ticketsSold = Number(competition.tickets_sold || 0);
-
-      const ticketsRemaining = Math.max(
-        totalTickets - ticketsSold,
-        0
-      );
-
-      const percentage = totalTickets > 0
-        ? Math.min((ticketsSold / totalTickets) * 100, 100)
+      const inventory = getInventory();
+      const ticketPrice = getTicketPrice();
+      const soldOut = inventory.remaining < 1;
+      const percentage = inventory.total > 0
+        ? Math.min(100, (inventory.sold / inventory.total) * 100)
         : 0;
 
-      const ticketPrice = Number(competition.ticket_price || 0);
-
-      const totalPrice = quantity * ticketPrice;
-
+      // Never show an entry selector with no available entries.
+      quantity = soldOut
+        ? 0
+        : Math.min(Math.max(1, quantity), inventory.remaining);
 
       document.title =
         `${competition.title || "Competition"} | Paws & Prizes`;
 
+      const imageUrl = safeImageUrl(competition.image_url);
+      const title = competition.title || "Paws & Prizes Competition";
+      const description = competition.description ||
+        "Discover this competition from Paws & Prizes.";
+
+      const rules = competition.rules ||
+        "Competition rules and full entry information will be published before any real competition opens.";
+
+      const prize = competition.prize || "Prize to be announced";
+      const prizeValue = competition.prize_value;
+      const status = competition.status || "Live";
 
       page.innerHTML = `
-
         <section class="hero">
-
-          <a href="/" class="back-link">
-            ← Back to competitions
-          </a>
-
+          <a href="/#competitions" class="back-link">← Back to competitions</a>
 
           <div class="competition-layout">
-
-
-            <!-- IMAGE -->
-
             <div class="competition-image-wrap">
-
               <img
+                id="competition-image"
                 class="competition-image"
-                src="${escapeHtml(getImage())}"
-                alt="${escapeHtml(competition.title || "Paws & Prizes competition")}"
-                onerror="this.src='https://placehold.co/1200x800/f4c542/242424?text=Paws+%26+Prizes'"
+                src="${escapeHtml(imageUrl)}"
+                alt="${escapeHtml(title)}"
+                loading="eager"
+                referrerpolicy="no-referrer"
               >
-
-              <div class="hope-badge">
-                🐾 Every entry starts with a little hope
-              </div>
-
+              <div class="hope-badge">🐾 Every entry starts with a little hope</div>
             </div>
 
-
-            <!-- DETAILS -->
-
-            <div class="details-card">
-
+            <section class="details-card" aria-labelledby="competition-title">
               <div class="status">
-                <span class="status-dot"></span>
-                ${escapeHtml(competition.status || "Live")}
+                <span class="status-dot" aria-hidden="true"></span>
+                ${escapeHtml(status)}
               </div>
 
-
-              <h1>
-                ${escapeHtml(competition.title || "Paws & Prizes Competition")}
-              </h1>
-
-
-              <div class="description">
-                ${escapeHtml(competition.description || "Enter for your chance to win something wonderful.")}
-              </div>
-
+              <h1 id="competition-title">${escapeHtml(title)}</h1>
+              <p class="description">${escapeHtml(description)}</p>
 
               <div class="prize-box">
-
-                <div class="prize-label">
-                  Prize
-                </div>
-
-                <div class="prize">
-                  ${escapeHtml(competition.prize || "Prize to be announced")}
-                </div>
-
+                <div class="prize-label">Prize</div>
+                <div class="prize">${escapeHtml(prize)}</div>
               </div>
-
 
               <div class="stats">
-
                 <div class="stat">
-
-                  <div class="stat-label">
-                    Entry price
-                  </div>
-
-                  <div class="stat-value">
-                    ${formatMoney(ticketPrice)}
-                  </div>
-
+                  <div class="stat-label">Entry price</div>
+                  <div class="stat-value">${formatMoney(ticketPrice)}</div>
                 </div>
-
-
                 <div class="stat">
-
-                  <div class="stat-label">
-                    Tickets remaining
-                  </div>
-
-                  <div class="stat-value">
-                    ${ticketsRemaining.toLocaleString("en-GB")}
-                  </div>
-
+                  <div class="stat-label">Tickets remaining</div>
+                  <div class="stat-value">${inventory.remaining.toLocaleString("en-GB")}</div>
                 </div>
-
-
                 <div class="stat">
-
-                  <div class="stat-label">
-                    Closing date
-                  </div>
-
-                  <div class="stat-value">
-                    ${formatDate(competition.closing_date)}
-                  </div>
-
+                  <div class="stat-label">Closing date</div>
+                  <div class="stat-value">${escapeHtml(formatDate(competition.closing_date))}</div>
                 </div>
-
-
                 <div class="stat">
-
-                  <div class="stat-label">
-                    Prize value
-                  </div>
-
-                  <div class="stat-value">
-                    ${formatMoney(competition.prize_value)}
-                  </div>
-
+                  <div class="stat-label">Prize value</div>
+                  <div class="stat-value">${formatMoney(prizeValue)}</div>
                 </div>
-
               </div>
-
 
               <div class="progress-section">
-
                 <div class="progress-top">
-
-                  <span>
-                    Entries sold
-                  </span>
-
-                  <span>
-                    ${ticketsSold.toLocaleString("en-GB")}
-                    /
-                    ${totalTickets.toLocaleString("en-GB")}
-                  </span>
-
+                  <span>Entries sold</span>
+                  <span>${inventory.sold.toLocaleString("en-GB")} / ${inventory.total.toLocaleString("en-GB")}</span>
                 </div>
-
-                <div class="progress-bar">
-
-                  <div
-                    class="progress-fill"
-                    style="width: ${percentage}%"
-                  ></div>
-
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-label="Tickets sold"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="${Math.round(percentage)}"
+                >
+                  <div class="progress-fill" style="width:${percentage}%"></div>
                 </div>
-
               </div>
 
-
               <div class="entry-box">
-
-                <h2>
-                  Choose your entries
-                </h2>
-
+                <h2>Choose your entries</h2>
 
                 <div class="quantity-row">
-
                   <button
+                    id="decrease"
                     class="quantity-button"
                     type="button"
-                    onclick="changeQuantity(-1)"
-                  >
-                    −
-                  </button>
-
+                    aria-label="Decrease entry quantity"
+                    ${soldOut || quantity <= 1 ? "disabled" : ""}
+                  >−</button>
 
                   <input
                     id="quantity"
                     class="quantity-input"
                     type="number"
-                    min="1"
-                    max="${Math.max(ticketsRemaining, 1)}"
-                    value="1"
-                    oninput="setQuantity(this.value)"
+                    inputmode="numeric"
+                    min="${soldOut ? 0 : 1}"
+                    max="${inventory.remaining}"
+                    step="1"
+                    value="${quantity}"
+                    aria-label="Number of entries"
+                    ${soldOut ? "disabled" : ""}
                   >
-
 
                   <button
+                    id="increase"
                     class="quantity-button"
                     type="button"
-                    onclick="changeQuantity(1)"
-                  >
-                    +
-                  </button>
-
+                    aria-label="Increase entry quantity"
+                    ${soldOut || quantity >= inventory.remaining ? "disabled" : ""}
+                  >+</button>
                 </div>
-
 
                 <div class="total-row">
-
-                  <span class="total-label">
-                    Your total
-                  </span>
-
-                  <span
-                    id="total"
-                    class="total"
-                  >
-                    ${formatMoney(ticketPrice)}
-                  </span>
-
+                  <span class="total-label">Your total</span>
+                  <output id="total" class="total" aria-live="polite">${formatMoney(quantity * ticketPrice)}</output>
                 </div>
-
+                <p id="quantity-error" class="small-note error-text" hidden></p>
               </div>
-
 
               <button
+                id="enter-button"
                 class="enter-button"
                 type="button"
-                onclick="continueToEntry()"
-              >
-                Continue to Entry →
-              </button>
+                ${soldOut ? "disabled" : ""}
+              >${soldOut ? "Competition sold out" : "Continue to Entry →"}</button>
 
-
-              <div class="small-note">
-                No payment is taken on this demo.
-              </div>
-
-            </div>
-
+              <p class="small-note">
+                Pre-launch demo only. This page does not take payments,
+                reserve tickets or create an entry.
+              </p>
+            </section>
           </div>
-
         </section>
-
 
         <section class="lower">
-
           <div class="lower-grid">
+            <article class="content-card">
+              <h2>Competition rules</h2>
+              <p>${escapeHtml(rules)}</p>
+            </article>
 
-
-            <div class="content-card">
-
-              <h2>
-                How this competition works
-              </h2>
-
+            <article class="content-card">
+              <h2>Your chance to win</h2>
               <p>
-                ${escapeHtml(
-                  competition.rules ||
-                  "Choose your entries and complete your entry before the competition closes. Winners will be selected after the competition has ended."
-                )}
+                This is a pre-launch preview. No purchase or entry is being
+                accepted through this page. Before any competition opens,
+                the final entry process, eligibility requirements, closing
+                arrangements and winner-selection rules must be clearly
+                published and the entry system properly tested.
               </p>
-
-            </div>
-
-
-            <div class="content-card">
-
-              <h2>
-                Your chance to win
-              </h2>
-
-              <p>
-                Every entry gives you a chance to win the prize shown above.
-
-                This is not an instant-win game. The winner selection takes place after the competition has ended, in accordance with the competition rules.
-
-                Full entry and winner information will be provided before any real competition goes live.
-              </p>
-
-            </div>
-
-
+            </article>
           </div>
-
         </section>
-
 
         <section class="give-hope">
-
           <div class="hope-panel">
-
             <div>
-
-              <h2>
-                Win something wonderful.
-                Help make something better.
-              </h2>
-
+              <h2>Win something wonderful. Help make something better.</h2>
               <p>
                 Paws & Prizes is being built around a simple idea:
-                every competition should have a little more heart.
-                As we grow, our Paw Fund will help us support animals
-                and the people who care for them.
+                competitions with a little more heart. As the business grows,
+                our Paw Fund aims to support animals and the people who care
+                for them. The fund's contribution and use will be explained
+                clearly before launch.
               </p>
-
             </div>
-
-            <div class="hope-paw">
-              🐾
-            </div>
-
+            <div class="hope-paw" aria-hidden="true">🐾</div>
           </div>
-
         </section>
-
       `;
 
-    }
-
-
-    function changeQuantity(amount) {
+      const image = document.getElementById("competition-image");
+      image.addEventListener("error", () => {
+        image.removeAttribute("src");
+        image.alt = "Paws & Prizes competition image unavailable";
+        image.style.objectFit = "contain";
+        image.style.padding = "30px";
+        image.style.background = "#fffaf0";
+      }, { once: true });
 
       const input = document.getElementById("quantity");
+      const error = document.getElementById("quantity-error");
 
-      if (!input) {
-        return;
+      function updateQuantity(nextValue) {
+        if (inventory.remaining < 1) return;
+
+        const parsed = Number(nextValue);
+
+        if (!Number.isSafeInteger(parsed) || parsed < 1) {
+          error.textContent = `Choose a whole number between 1 and ${inventory.remaining}.`;
+          error.hidden = false;
+          return;
+        }
+
+        if (parsed > inventory.remaining) {
+          error.textContent =
+            `Only ${inventory.remaining.toLocaleString("en-GB")} entries remain.`;
+          error.hidden = false;
+          return;
+        }
+
+        error.textContent = "";
+        error.hidden = true;
+        quantity = parsed;
+
+        input.value = String(quantity);
+        document.getElementById("total").textContent =
+          formatMoney(quantity * ticketPrice);
+
+        document.getElementById("decrease").disabled = quantity <= 1;
+        document.getElementById("increase").disabled =
+          quantity >= inventory.remaining;
       }
 
-      let newQuantity =
-        Number(input.value || 1) + amount;
+      document.getElementById("decrease").addEventListener("click", () => {
+        updateQuantity(quantity - 1);
+      });
 
-      const max =
-        Math.max(Number(competition.ticket_quantity || 1) - Number(competition.tickets_sold || 0), 1);
+      document.getElementById("increase").addEventListener("click", () => {
+        updateQuantity(quantity + 1);
+      });
 
-      newQuantity =
-        Math.max(1, Math.min(newQuantity, max));
+      input.addEventListener("change", () => {
+        updateQuantity(input.value);
+      });
 
-      quantity = newQuantity;
+      input.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          input.blur();
+        }
+      });
 
-      input.value = newQuantity;
-
-      updateTotal();
-
+      document.getElementById("enter-button").addEventListener("click", () => {
+        // Deliberately no checkout, ticket reservation or payment yet.
+        alert(
+          "Paws & Prizes is still in pre-launch testing. No entry has been created and no payment has been taken."
+        );
+      });
     }
-
-
-    function setQuantity(value) {
-
-      let newQuantity = Number(value);
-
-      if (!Number.isFinite(newQuantity) || newQuantity < 1) {
-        newQuantity = 1;
-      }
-
-      const max =
-        Math.max(Number(competition.ticket_quantity || 1) - Number(competition.tickets_sold || 0), 1);
-
-      newQuantity =
-        Math.min(Math.floor(newQuantity), max);
-
-      quantity = newQuantity;
-
-      document.getElementById("quantity").value =
-        newQuantity;
-
-      updateTotal();
-
-    }
-
-
-    function updateTotal() {
-
-      const total =
-        quantity * Number(competition.ticket_price || 0);
-
-      const totalElement =
-        document.getElementById("total");
-
-      if (totalElement) {
-        totalElement.textContent =
-          formatMoney(total);
-      }
-
-    }
-
-
-    function continueToEntry() {
-
-      /*
-        DEMO ONLY.
-
-        We are deliberately NOT connecting
-        this to Stripe yet.
-
-        Later this button will take the customer
-        through:
-
-        Account
-        ↓
-        Ticket allocation
-        ↓
-        Stripe checkout
-        ↓
-        Confirmation
-      */
-
-      alert(
-        "This is currently a pre-launch demo. No payment has been taken."
-      );
-
-    }
-
 
     async function loadCompetition() {
-
-      if (!competitionId) {
-
-        page.innerHTML = `
-
-          <div class="error-box">
-
-            <h1>
-              Competition not found
-            </h1>
-
-            <p>
-              No competition was selected.
-              Please return to the competitions page.
-            </p>
-
-            <a
-              href="/"
-              class="home-button"
-            >
-              Back to Paws & Prizes
-            </a>
-
-          </div>
-
-        `;
-
+      if (!competitionId || !/^\d+$/.test(competitionId)) {
+        showMessage(
+          "Competition not found",
+          "Please choose a competition from the Paws & Prizes homepage."
+        );
         return;
       }
 
-
       try {
-
-        const response =
-          await fetch("/api/competitions");
-
+        const response = await fetch("/api/competitions", {
+          method: "GET",
+          headers: { "Accept": "application/json" },
+          cache: "no-store",
+          credentials: "same-origin"
+        });
 
         if (!response.ok) {
-          throw new Error("Could not load competitions.");
+          throw new Error("The competition list could not be loaded.");
         }
 
+        const competitions = await response.json();
 
-        const competitions =
-          await response.json();
+        if (!Array.isArray(competitions)) {
+          throw new Error("The competition response was not valid.");
+        }
 
-
-        competition =
-          competitions.find(
-            item => String(item.id) === String(competitionId)
-          );
-
+        // The public API should return live competitions only.
+        competition = competitions.find(
+          item => String(item.id) === String(competitionId)
+        );
 
         if (!competition) {
-          throw new Error("Competition not found.");
+          showMessage(
+            "Competition unavailable",
+            "This competition may not be live yet, may have closed, or may no longer be available."
+          );
+          return;
         }
 
-
         renderCompetition();
-
       } catch (error) {
-
-        console.error(error);
-
-
-        page.innerHTML = `
-
-          <div class="error-box">
-
-            <h1>
-              We couldn't load that competition
-            </h1>
-
-            <p>
-              Please try again or return to the Paws & Prizes homepage.
-            </p>
-
-            <a
-              href="/"
-              class="home-button"
-            >
-              Back to Paws & Prizes
-            </a>
-
-          </div>
-
-        `;
-
+        console.error("Competition loading failed:", error);
+        showMessage(
+          "We couldn't load that competition",
+          "Please try again shortly or return to the Paws & Prizes homepage.",
+          true
+        );
       }
-
     }
 
-
     loadCompetition();
-
   </script>
-
 </body>
 </html>
